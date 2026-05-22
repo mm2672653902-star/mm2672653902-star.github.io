@@ -474,7 +474,7 @@ footer:
   # 展示网站的 PV、UV 统计数
   # Display website PV and UV statistics
   statistics:
-    enable: false
+    enable: true
 
     # 统计数据来源，使用 leancloud, umami, openkounter 需要设置 `web_analytics` 中对应的参数；使用 busuanzi 不需要额外设置，但是有时不稳定，另外本地运行时 busuanzi 显示统计数据很大属于正常现象，部署后会正常
     # Data source. If use leancloud, umami, openkounter, you need to set the parameter in `web_analytics`
@@ -770,11 +770,11 @@ post:
   # 评论插件
   # Comment plugin
   comments:
-    enable: false
+    enable: true
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: disqus
+    type: giscus
 
 
 #---------------------------
@@ -920,12 +920,12 @@ cusdis:
 # Based on GitHub Discussions, similar to Utterances
 # See: https://giscus.app/
 giscus:
-  repo:
-  repo-id:
-  category:
-  category-id:
+  repo: mm2672653902-star/mm2672653902-star.github.io
+  repo-id: # 待填写 (从 giscus.app 获取后填入，形如 R_kgD...)
+  category: Announcements
+  category-id: # 待填写 (从 giscus.app 获取后填入，形如 DIC_kwD...)
   theme-light: light
-  theme-dark: dark
+  theme-dark: noborder_dark
   mapping: pathname
   reactions-enabled: 1
   emit-metadata: 0
