@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小毛的blog - 管理后台</title>
+    <!-- Modern Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Cyberpunk Design System Variables */
+        :root {
+            --bg-black: #000000;
+            --bg-darker: #060606;
+            --bg-card: #0c0c0e;
+            --bg-input: #121214;
+            --border-color: #1a1a1f;
+            --border-glow-cyan: #00e5ff;
+            --border-glow-green: #64ffda;
+            --text-primary: #ffffff;
+            --text-secondary: #90909a;
+            --text-muted: #505058;
+            --neon-blue: #00e5ff;
+            --neon-green: #64ffda;
+            --neon-red: #ff3366;
+            --neon-yellow: #ffb300;
+            --font-main: 'Outfit', 'Noto Sans SC', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --glow-shadow-cyan: 0 0 10px rgba(0, 229, 255, 0.25), 0 0 2px rgba(0, 229, 255, 0.4);
+            --glow-shadow-green: 0 0 10px rgba(100, 255, 218, 0.25), 0 0 2px rgba(100, 255, 218, 0.4);
+        }
+
+        /* Basic Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Utility Components */
+        .neon-text-cyan {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+        }
+        .neon-text-green {
+            color: var(--neon-green);
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
+        }
+        .neon-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            font-family: var(--font-main);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            outline: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-cyan {
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+        }
+        .btn-cyan:hover {
+            background: rgba(0, 229, 255, 0.05);
+            box-shadow: var(--glow-shadow-cyan);
+            transform: translateY(-1px);
+        }
+        .btn-green {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+        }
+        .btn-green:hover {
+            background: rgba(100, 255, 218, 0.05);
+            box-shadow: var(--glow-shadow-green);
+            transform: translateY(-1px);
+        }
+        .btn-red {
+            border-color: var(--neon-red);
+            color: var(--neon-red);
+        }
+        .btn-red:hover {
+            background: rgba(255, 51, 102, 0.05);
+            box-shadow: 0 0 10px rgba(255, 51, 102, 0.25);
+            transform: translateY(-1px);
+        }
+
+        /* Glass Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            transition: border 0.3s ease;
+        }
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Loading Screen & Toast */
+        .toast-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .toast {
+            background: #0d0d11;
+            border: 1px solid var(--border-color);
+            padding: 16px 24px;
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateX(120%);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .toast.success { border-left: 4px solid var(--neon-green); }
+        .toast.error { border-left: 4px solid var(--neon-red); }
+        .toast.info { border-left: 4px solid var(--neon-blue); }
+
+        /* Login Layout */
+        #login-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+        #login-screen::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+            top: 20%;
+            left: 25%;
+            pointer-events: none;
+        }
+        #login-screen::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.04) 0%, transparent 70%);
+            bottom: 15%;
+            right: 20%;
+            pointer-events: none;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            z-index: 10;
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .form-input {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-family: var(--font-main);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 6px rgba(0, 229, 255, 0.15);
+        }
+
+        /* App Panel Layout (Main Interface) */
+        #app-panel {
+            display: none;
+            padding: 30px;
+            max-width: 1600px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .brand-logo {
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .brand-badge {
+            font-size: 10px;
+            font-weight: 600;
+            background: rgba(100, 255, 218, 0.1);
+            color: var(--neon-green);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Pipeline Status Badge */
+        .pipeline-widget {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            background: #0a0a0c;
+            border: 1px solid var(--border-color);
+            padding: 6px 14px;
+            border-radius: 3px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--text-muted);
+            position: relative;
+        }
+        .status-dot.completed.success {
+            background-color: var(--neon-green);
+            box-shadow: 0 0 6px var(--neon-green);
+        }
+        .status-dot.queued, .status-dot.in_progress {
+            background-color: var(--neon-yellow);
+            box-shadow: 0 0 6px var(--neon-yellow);
+            animation: pulse 1.5s infinite;
+        }
+        .status-dot.failed {
+            background-color: var(--neon-red);
+            box-shadow: 0 0 6px var(--neon-red);
+        }
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        /* Two Column Grid */
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        @media (max-width: 1024px) {
+            .workspace-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left Column: Posts List */
+        .posts-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .panel-title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .panel-title {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+        }
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .post-item {
+            background: #050506;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .post-item:hover {
+            border-color: var(--neon-blue);
+            transform: translateX(2px);
+            background: #080a0f;
+        }
+        .post-item.active {
+            border-color: var(--neon-blue);
+            background: rgba(0, 229, 255, 0.02);
+            box-shadow: inset 3px 0 0 var(--neon-blue);
+        }
+        .post-item-title {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            color: var(--text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .post-item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        .post-item-date {
+            font-family: var(--font-mono);
+        }
+        .post-item-actions {
+            display: flex;
+            gap: 10px;
+            opacity: 0.4;
+            transition: opacity 0.2s ease;
+        }
+        .post-item:hover .post-item-actions {
+            opacity: 1;
+        }
+        .action-icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 12px;
+            padding: 2px;
+            transition: color 0.2s ease;
+        }
+        .action-icon-btn.edit:hover {
+            color: var(--neon-blue);
+        }
+        .action-icon-btn.delete:hover {
+            color: var(--neon-red);
+        }
+
+        /* Right Column: Dynamic Content Panel */
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .editor-header-fields {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .editor-header-fields {
+                grid-template-columns: 1fr;
+            }
+        }
+        .editor-body-textarea {
+            width: 100%;
+            height: 52vh;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 20px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.6;
+            outline: none;
+            resize: none;
+            transition: border-color 0.3s ease;
+        }
+        .editor-body-textarea:focus {
+            border-color: var(--neon-blue);
+        }
+        
+        /* Side by Side Preview Layout (Optional Toggle) */
+        .editor-workspace {
+            position: relative;
+            width: 100%;
+        }
+        .preview-pane {
+            display: none;
+            width: 100%;
+            height: 52vh;
+            background: #020203;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 20px;
+            border-radius: 4px;
+            overflow-y: auto;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        .preview-pane h1, .preview-pane h2, .preview-pane h3 {
+            margin: 1.5em 0 0.5em 0;
+            color: var(--neon-blue);
+        }
+        .preview-pane h1:first-child { margin-top: 0; }
+        .preview-pane p { margin-bottom: 1em; color: #e1e1e6; }
+        .preview-pane blockquote {
+            border-left: 3px solid var(--neon-green);
+            background: rgba(100, 255, 218, 0.03);
+            padding: 10px 15px;
+            margin: 1.5em 0;
+            color: var(--text-secondary);
+        }
+        .preview-pane code {
+            font-family: var(--font-mono);
+            background: #121216;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            color: var(--neon-green);
+        }
+        .preview-pane pre {
+            background: #0a0a0d;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1.5em 0;
+        }
+        .preview-pane pre code {
+            color: var(--text-primary);
+            background: none;
+            padding: 0;
+        }
+
+        .editor-tab-bar {
+            display: flex;
+            gap: 2px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 12px;
+        }
+        .editor-tab {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            font-family: var(--font-main);
+        }
+        .editor-tab.active {
+            color: var(--neon-blue);
+            border-bottom-color: var(--neon-blue);
+            background: rgba(0, 229, 255, 0.02);
+        }
+
+        /* Default Placeholder Screen */
+        .placeholder-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 40px;
+        }
+        .placeholder-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: var(--border-color);
+        }
+
+        /* Action bar for editor */
+        .editor-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .editor-actions-left {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .modal-card {
+            width: 100%;
+            max-width: 480px;
+            background: var(--bg-card);
+            border: 1px solid var(--neon-red);
+            border-radius: 6px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(255, 51, 102, 0.15);
+        }
+        .modal-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--neon-red);
+            margin-bottom: 14px;
+        }
+        .modal-body {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        /* Inline loading spin */
+        .spinner {
+            border: 2px solid rgba(255,255,255,0.05);
+            border-top: 2px solid currentColor;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Login Screen -->
+    <section id="login-screen">
+        <div class="card login-card">
+            <div class="login-header">
+                <h1 class="neon-text-cyan">AUTHOR HUB</h1>
+                <p>小毛的blog空间 · 极客登录终端</p>
+            </div>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">管理账号</label>
+                    <input type="text" id="username" class="form-input" autocomplete="username" required placeholder="输入账号">
+                </div>
+                <div class="form-group">
+                    <label for="password">验证密码</label>
+                    <input type="password" id="password" class="form-input" autocomplete="current-password" required placeholder="输入密码">
+                </div>
+                <button type="submit" class="neon-btn btn-cyan" style="width: 100%; margin-top: 10px;">
+                    <span>解密登录</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Main Workspace Application -->
+    <section id="app-panel">
+        <!-- Header -->
+        <header class="panel-header">
+            <div class="brand-logo neon-text-cyan">
+                <span>MAO_BLOG_OS</span>
+                <span class="brand-badge">Admin Panel</span>
+            </div>
+            <div class="header-actions">
+                <div class="pipeline-widget" id="pipeline-status">
+                    <span class="status-dot" id="pipeline-dot"></span>
+                    <span id="pipeline-text" style="color: var(--text-secondary);">检查 Actions 部署状态...</span>
+                    <button class="action-icon-btn" onclick="fetchPipelineStatus()" title="刷新部署状态" style="margin-left: 6px;">🔄</button>
+                </div>
+                <button class="neon-btn btn-red" onclick="handleLogout()" style="padding: 6px 14px; font-size: 13px;">
+                    退出后台
+                </button>
+            </div>
+        </header>
+
+        <!-- Workspace Layout -->
+        <main class="workspace-grid">
+            <!-- Left Panel: Article Lists -->
+            <div class="posts-panel">
+                <div class="panel-title-bar">
+                    <h2 class="panel-title">文章列表 (<span id="post-count">0</span>)</h2>
+                    <button class="neon-btn btn-green" onclick="initNewPost()" style="padding: 6px 12px; font-size: 12px; font-weight: 600;">
+                        + 新建文章
+                    </button>
+                </div>
+                <div class="post-list" id="post-list-container">
+                    <div style="text-align: center; padding: 40px 0; color: var(--text-muted);">
+                        <div class="spinner" style="margin-bottom: 8px;"></div>
+                        <div>正在拉取 GitHub 文章目录...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Editor / Main Stage -->
+            <div class="editor-container" id="editor-stage">
+                <!-- Default State -->
+                <div class="placeholder-screen">
+                    <div class="placeholder-icon">📄</div>
+                    <h3 style="color: var(--text-secondary); font-size: 16px; margin-bottom: 8px;">欢迎来到赛博管理后台</h3>
+                    <p style="font-size: 13px; max-width: 320px; margin: 0 auto; color: var(--text-muted);">
+                        从左侧列表选择一篇文章进行修改编辑，或点击“新建文章”按钮开启新的赛博随笔。
+                    </p>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- Delete Confirm Modal -->
+    <div class="modal-overlay" id="delete-modal">
+        <div class="modal-card">
+            <h3 class="modal-title">☠️ 警告：彻底删除文章</h3>
+            <p class="modal-body">
+                您确定要彻底删除文章 <strong id="delete-post-title" class="neon-text-cyan"></strong> 吗？<br>
+                此操作将直接向 GitHub 提交删除记录并触发 Actions 部署，操作成功后<b>不可逆</b>。
+            </p>
+            <div class="modal-actions">
+                <button class="neon-btn" onclick="closeDeleteModal()">取消</button>
+                <button class="neon-btn btn-red" id="delete-confirm-btn" onclick="executeDeletePost()">
+                    确定删除
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Block -->
+    <script>
+        // Encrypted credentials package (decrypted using Web Crypto API PBKDF2 + AES-GCM)
+        const CRYPTO_CONFIG = {
+            salt: "7950642fdf172bcb26374df3694d99b9",
+            iv: "2f7a62dd03a62ae88829e6f4",
+            ciphertext: "af1298ef0b4e341a5f3820094b6dd4fec89f01db3377c0f27cdd9bdea182b970cb5085697eeffc58",
+            authTag: "747fdc73b274fc120de051f82d784bdc"
+        };
+
+        const REPO_OWNER = "mm2672653902-star";
+        const REPO_NAME = "mm2672653902-star.github.io";
+        const BRANCH = "source";
+
+        // Global State variables
+        let gitHubToken = "";
+        let postsDataList = [];
+        let currentEditingPost = null; // Holds { name, path, sha, frontMatter, content }
+        let postToDelete = null;
+
+        // Custom Helper: Hex string to Uint8Array
+        function hexToBytes(hex) {
+            const arr = new Uint8Array(hex.length / 2);
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = parseInt(hex.substr(i * 2, 2), 16);
+            }
+            return arr;
+        }
+
+        // Custom UTF-8 Safe Base64 Helper
+        function utf8_to_b64(str) {
+            return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+        }
+
+        function b64_to_utf8(str) {
+            return decodeURIComponent(atob(str).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+        }
+
+        // Decrypt Token with User Inputs
+        async function decryptToken(username, password) {
+            const pin = `${username}:${password}`;
+            const enc = new TextEncoder();
+            
+            try {
+                const keyMaterial = await window.crypto.subtle.importKey(
+                    "raw",
+                    enc.encode(pin),
+                    { name: "PBKDF2" },
+                    false,
+                    ["deriveBits", "deriveKey"]
+                );
+                
+                const key = await window.crypto.subtle.deriveKey(
+                    {
+                        name: "PBKDF2",
+                        salt: hexToBytes(CRYPTO_CONFIG.salt),
+                        iterations: 100000,
+                        hash: "SHA-256"
+                    },
+                    keyMaterial,
+                    { name: "AES-GCM", length: 256 },
+                    false,
+                    ["decrypt"]
+                );
+
+                const fullCiphertext = hexToBytes(CRYPTO_CONFIG.ciphertext + CRYPTO_CONFIG.authTag);
+                const decryptedBuffer = await window.crypto.subtle.decrypt(
+                    {
+                        name: "AES-GCM",
+                        iv: hexToBytes(CRYPTO_CONFIG.iv)
+                    },
+                    key,
+                    fullCiphertext
+                );
+
+                return new TextDecoder().decode(decryptedBuffer);
+            } catch (error) {
+                console.error("Decryption failed:", error);
+                return null;
+            }
+        }
+
+        // Alert messages using dynamic toasts
+        function showToast(message, type = "info") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            let icon = "ℹ️";
+            if (type === "success") icon = "✅";
+            if (type === "error") icon = "❌";
+
+            toast.innerHTML = `<span>${icon}</span><div>${message}</div>`;
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // Remove after 3.5s
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // Check if token exists in session
+        window.addEventListener('DOMContentLoaded', async () => {
+            const cachedToken = sessionStorage.getItem('MAO_BLOG_TOKEN');
+            if (cachedToken) {
+                gitHubToken = cachedToken;
+                showPanel();
+            }
+        });
+
+        // Login Submission
+        async function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value;
+            
+            showToast("解密验证中...", "info");
+            
+            const decryptedToken = await decryptToken(user, pass);
+            if (decryptedToken && decryptedToken.startsWith("ghp_")) {
+                gitHubToken = decryptedToken;
+                sessionStorage.setItem('MAO_BLOG_TOKEN', gitHubToken);
+                showToast("解密登录成功！进入极客中心", "success");
+                showPanel();
+            } else {
+                showToast("管理员账号或密码验证失败，解密失败！", "error");
+            }
+        }
+
+        function showPanel() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app-panel').style.display = 'block';
+            fetchPostList();
+            fetchPipelineStatus();
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('MAO_BLOG_TOKEN');
+            gitHubToken = "";
+            location.reload();
+        }
+
+        // GitHub API HTTP Wrapper
+        async function githubAPIRequest(endpoint, options = {}) {
+            const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}${endpoint}`;
+            const headers = {
+                'Authorization': `token ${gitHubToken}`,
+                'Accept': 'application/vnd.github.v3+json',
+                ...options.headers
+            };
+
+            const response = await fetch(url, { ...options, headers });
+            
+            if (response.status === 401) {
+                showToast("凭证过期或被撤销，请重新登录", "error");
+                handleLogout();
+                throw new Error("Unauthorized");
+            }
+            
+            if (!response.ok) {
+                const errMsg = await response.text();
+                throw new Error(errMsg || `API error ${response.status}`);
+            }
+
+            return response.json();
+        }
+
+        // Fetch Pipeline runs
+        async function fetchPipelineStatus() {
+            const textElement = document.getElementById('pipeline-text');
+            const dotElement = document.getElementById('pipeline-dot');
+            
+            dotElement.className = "status-dot";
+            textElement.style.color = "var(--text-secondary)";
+            textElement.innerText = "同步 Actions 中...";
+
+            try {
+                const data = await githubAPIRequest('/actions/runs');
+                const runs = data.workflow_runs || [];
+                const deployRun = runs.find(r => r.name === 'Deploy Hexo Blog');
+                
+                if (deployRun) {
+                    const status = deployRun.status; // queued, in_progress, completed
+                    const conclusion = deployRun.conclusion; // success, failure, cancelled
+                    
+                    dotElement.className = `status-dot ${status} ${conclusion || ''}`;
+                    
+                    let statusZh = "排队中";
+                    if (status === "in_progress") statusZh = "编译部署中...";
+                    if (status === "completed") {
+                        statusZh = conclusion === "success" ? "已上线部署成功" : "最后一次部署失败";
+                    }
+
+                    const timeStr = new Date(deployRun.created_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+                    textElement.innerHTML = `Actions: <b style="color:var(--text-primary)">${statusZh}</b> (${timeStr})`;
+                } else {
+                    textElement.innerText = "无部署记录";
+                }
+            } catch (err) {
+                console.error(err);
+                textElement.innerText = "状态同步失败";
+            }
+        }
+
+        // Fetch Post files from GitHub repo
+        async function fetchPostList() {
+            const listContainer = document.getElementById('post-list-container');
+            try {
+                const files = await githubAPIRequest(`/contents/source/_posts?ref=${BRANCH}`);
+                postsDataList = files.filter(f => f.name.endsWith('.md'));
+                
+                document.getElementById('post-count').innerText = postsDataList.length;
+                renderPostList();
+            } catch (err) {
+                console.error(err);
+                showToast("加载文章列表失败，请检查网络或配置", "error");
+                listContainer.innerHTML = `<div style="text-align: center; padding: 40px 0; color: var(--neon-red);">拉取失败，请点击刷新重试</div>`;
+            }
+        }
+
+        // Render List UI
+        function renderPostList() {
+            const listContainer = document.getElementById('post-list-container');
+            if (postsDataList.length === 0) {
+                listContainer.innerHTML = `<div style="text-align: center; padding: 40px 0; color: var(--text-muted);">暂无文章</div>`;
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            postsDataList.forEach(post => {
+                const isSelected = currentEditingPost && currentEditingPost.path === post.path;
+                
+                // Clean the title for aesthetic list reading (replace hyphens with spaces, remove .md)
+                const displayTitle = post.name.replace(/\.md$/, '').replace(/-/g, ' ');
+
+                const item = document.createElement('div');
+                item.className = `post-item ${isSelected ? 'active' : ''}`;
+                item.onclick = () => loadPost(post);
+
+                item.innerHTML = `
+                    <div class="post-item-title">${displayTitle}</div>
+                    <div class="post-item-meta">
+                        <span class="post-item-date">Hexo Markdown</span>
+                        <div class="post-item-actions" onclick="event.stopPropagation()">
+                            <button class="action-icon-btn edit" onclick="loadPost(${JSON.stringify(post).replace(/"/g, '&quot;')})" title="编辑">✏️</button>
+                            <button class="action-icon-btn delete" onclick="confirmDeletePost(${JSON.stringify(post).replace(/"/g, '&quot;')})" title="删除">🗑️</button>
+                        </div>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        // Parse front-matter out of Markdown raw text
+        function parseMarkdown(rawContent) {
+            const frontMatterRegex = /^---([\s\S]*?)---/;
+            const match = rawContent.match(frontMatterRegex);
+            
+            let frontMatter = {
+                title: "",
+                date: "",
+                author: "Mao",
+                tags: [],
+                categories: ""
+            };
+            let body = rawContent;
+
+            if (match) {
+                const fmBlock = match[1];
+                body = rawContent.replace(frontMatterRegex, '').trim();
+                
+                // Parse simple YAML lines
+                const lines = fmBlock.split('\n');
+                lines.forEach(line => {
+                    const colonIndex = line.indexOf(':');
+                    if (colonIndex > 0) {
+                        const key = line.slice(0, colonIndex).trim();
+                        let val = line.slice(colonIndex + 1).trim();
+                        
+                        // Parse values
+                        if (key === 'title') {
+                            frontMatter.title = val.replace(/^["']|["']$/g, '');
+                        } else if (key === 'date') {
+                            frontMatter.date = val.replace(/^["']|["']$/g, '');
+                        } else if (key === 'author') {
+                            frontMatter.author = val.replace(/^["']|["']$/g, '');
+                        } else if (key === 'categories') {
+                            frontMatter.categories = val.replace(/^["']|["']$/g, '');
+                        } else if (key === 'tags') {
+                            // Extract arrays e.g. [a, b, c] or simple string
+                            if (val.startsWith('[') && val.endsWith(']')) {
+                                frontMatter.tags = val.slice(1, -1).split(',').map(t => t.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+                            } else {
+                                frontMatter.tags = [val.replace(/^["']|["']$/g, '')].filter(Boolean);
+                            }
+                        }
+                    }
+                });
+            }
+
+            return { frontMatter, body };
+        }
+
+        // Format raw Markdown text with front-matter
+        function stringifyMarkdown(frontMatter, body) {
+            const tagsFormatted = Array.isArray(frontMatter.tags) && frontMatter.tags.length > 0 
+                ? `[${frontMatter.tags.join(', ')}]` 
+                : '[]';
+
+            return `---
+title: ${frontMatter.title}
+date: ${frontMatter.date || new Date().toISOString().replace('T', ' ').substring(0, 19)}
+author: ${frontMatter.author || 'Mao'}
+tags: ${tagsFormatted}
+categories: ${frontMatter.categories || '技术总结'}
+---
+${body}`;
+        }
+
+        // Fetch individual raw content on-demand
+        async function loadPost(post) {
+            const editorStage = document.getElementById('editor-stage');
+            
+            // Set active list class
+            currentEditingPost = { ...post };
+            renderPostList();
+
+            editorStage.innerHTML = `
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; color: var(--text-secondary);">
+                    <div class="spinner" style="margin-bottom: 8px;"></div>
+                    <div>正在从 GitHub 读取文章源码...</div>
+                </div>
+            `;
+
+            try {
+                const response = await githubAPIRequest(`/contents/${post.path}?ref=${BRANCH}`);
+                const rawContent = b64_to_utf8(response.content);
+                const { frontMatter, body } = parseMarkdown(rawContent);
+
+                currentEditingPost.sha = response.sha;
+                currentEditingPost.frontMatter = frontMatter;
+                currentEditingPost.body = body;
+
+                renderEditor();
+            } catch (err) {
+                console.error(err);
+                showToast("读取文件内容失败", "error");
+                editorStage.innerHTML = `
+                    <div class="placeholder-screen" style="border-color: var(--neon-red);">
+                        <div style="font-size: 40px; margin-bottom: 12px;">🚫</div>
+                        <h4 style="color: var(--neon-red); margin-bottom: 8px;">读取错误</h4>
+                        <p style="font-size: 13px; color: var(--text-secondary);">该文章拉取失败，请检查网络或刷新重试。</p>
+                        <button class="neon-btn btn-cyan" style="margin-top: 15px;" onclick="loadPost(currentEditingPost)">重新加载</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Render Editor view
+        function renderEditor() {
+            const editorStage = document.getElementById('editor-stage');
+            const fm = currentEditingPost.frontMatter;
+
+            editorStage.innerHTML = `
+                <div class="card editor-container">
+                    <div class="editor-header-fields">
+                        <div class="form-group">
+                            <label>文章标题 (Title)</label>
+                            <input type="text" id="edit-title" class="form-input" value="${fm.title || ''}" oninput="syncFilenameHint()">
+                        </div>
+                        <div class="form-group">
+                            <label>发布分类 (Categories)</label>
+                            <input type="text" id="edit-categories" class="form-input" value="${fm.categories || ''}" placeholder="默认: 技术总结">
+                        </div>
+                    </div>
+                    <div class="editor-header-fields">
+                        <div class="form-group">
+                            <label>标签 (Tags，英文逗号分隔)</label>
+                            <input type="text" id="edit-tags" class="form-input" value="${Array.isArray(fm.tags) ? fm.tags.join(', ') : ''}" placeholder="光电, AI工具, 学习心得">
+                        </div>
+                        <div class="form-group">
+                            <label>文件名 (只读预览，由标题自动换算)</label>
+                            <input type="text" id="edit-filename-hint" class="form-input" style="color: var(--text-muted); cursor: not-allowed; font-family: var(--font-mono); font-size: 12px;" readonly value="${currentEditingPost.name}">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="editor-tab-bar">
+                            <button class="editor-tab active" id="tab-write-btn" onclick="switchEditorTab('write')">编辑器 (Markdown)</button>
+                            <button class="editor-tab" id="tab-preview-btn" onclick="switchEditorTab('preview')">实时预览</button>
+                        </div>
+                        
+                        <div class="editor-workspace">
+                            <textarea id="edit-body" class="editor-body-textarea" placeholder="在此书写您的赛博硬核内容 (支持 Markdown)...">${currentEditingPost.body || ''}</textarea>
+                            <div id="edit-preview" class="preview-pane"></div>
+                        </div>
+                    </div>
+
+                    <div class="editor-actions">
+                        <button class="neon-btn" onclick="cancelEdit()">取消返回</button>
+                        <div class="editor-actions-left">
+                            <button class="neon-btn btn-green" id="save-btn" onclick="submitSavePost()">
+                                🚀 发射上线 (Publish)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Auto filename generator from title
+        function syncFilenameHint() {
+            const titleInput = document.getElementById('edit-title').value.trim();
+            const hintInput = document.getElementById('edit-filename-hint');
+            
+            if (!titleInput) {
+                hintInput.value = currentEditingPost.name || 'new-post.md';
+                return;
+            }
+
+            // Convert space and special characters to hyphens
+            let sanitized = titleInput
+                .replace(/[\s\/\\]+/g, '-') // Replace whitespace and slashes with -
+                .replace(/["'?*|<>:;]/g, ''); // Remove unsafe chars for Windows files
+            
+            if (!sanitized.endsWith('.md')) {
+                sanitized += '.md';
+            }
+            hintInput.value = sanitized;
+        }
+
+        // Switch write / preview tab
+        function switchEditorTab(tab) {
+            const textarea = document.getElementById('edit-body');
+            const preview = document.getElementById('edit-preview');
+            const writeBtn = document.getElementById('tab-write-btn');
+            const previewBtn = document.getElementById('tab-preview-btn');
+
+            if (tab === 'write') {
+                textarea.style.display = 'block';
+                preview.style.display = 'none';
+                writeBtn.classList.add('active');
+                previewBtn.classList.remove('active');
+            } else {
+                textarea.style.display = 'none';
+                preview.style.display = 'block';
+                writeBtn.classList.remove('active');
+                previewBtn.classList.add('active');
+
+                // Simple parser for previewing Markdown
+                const text = textarea.value;
+                preview.innerHTML = simpleMarkdownRender(text);
+            }
+        }
+
+        // Simplistic Markdown parser (No bulky library, keeps it serverless/fast)
+        function simpleMarkdownRender(md) {
+            if (!md) return '<p style="color:var(--text-muted)">无内容预览</p>';
+            
+            let html = md
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+
+            // Headers
+            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            
+            // Blockquotes
+            html = html.replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>');
+            
+            // Inline code
+            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+            
+            // Code Blocks
+            html = html.replace(/```([\s\S]*?)```/gm, '<pre><code>$1</code></pre>');
+            
+            // Bold
+            html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+            
+            // Paragraphs (simplified)
+            html = html.split('\n\n').map(p => {
+                if (p.trim().startsWith('<h') || p.trim().startsWith('<blockquote') || p.trim().startsWith('<pre')) {
+                    return p;
+                }
+                return `<p>${p.replace(/\n/g, '<br>')}</p>`;
+            }).join('');
+
+            return html;
+        }
+
+        // Init blank form for creating post
+        function initNewPost() {
+            currentEditingPost = {
+                name: '',
+                path: '',
+                sha: '',
+                frontMatter: {
+                    title: '新文章标题',
+                    date: new Date().toISOString().replace('T', ' ').substring(0, 19),
+                    author: 'Mao',
+                    tags: [],
+                    categories: '技术总结'
+                },
+                body: '> '
+            };
+            
+            // Highlight list selection
+            renderPostList();
+            renderEditor();
+            syncFilenameHint();
+        }
+
+        function cancelEdit() {
+            currentEditingPost = null;
+            renderPostList();
+            document.getElementById('editor-stage').innerHTML = `
+                <div class="placeholder-screen">
+                    <div class="placeholder-icon">📄</div>
+                    <h3 style="color: var(--text-secondary); font-size: 16px; margin-bottom: 8px;">欢迎来到赛博管理后台</h3>
+                    <p style="font-size: 13px; max-width: 320px; margin: 0 auto; color: var(--text-muted);">
+                        从左侧列表选择一篇文章进行修改编辑，或点击“新建文章”按钮开启新的赛博随笔。
+                    </p>
+                </div>
+            `;
+        }
+
+        // Commit save/create post
+        async function submitSavePost() {
+            const title = document.getElementById('edit-title').value.trim();
+            const categories = document.getElementById('edit-categories').value.trim() || '技术总结';
+            const tagsRaw = document.getElementById('edit-tags').value;
+            const body = document.getElementById('edit-body').value;
+            const filename = document.getElementById('edit-filename-hint').value.trim();
+            const saveBtn = document.getElementById('save-btn');
+
+            if (!title) {
+                showToast("文章标题不能为空！", "error");
+                return;
+            }
+            if (!filename) {
+                showToast("生成的文件名不能为空！", "error");
+                return;
+            }
+
+            const tags = tagsRaw.split(',')
+                .map(t => t.trim())
+                .filter(Boolean);
+
+            const updatedFM = {
+                title,
+                date: currentEditingPost.frontMatter.date || new Date().toISOString().replace('T', ' ').substring(0, 19),
+                author: 'Mao',
+                tags,
+                categories
+            };
+
+            const fullContent = stringifyMarkdown(updatedFM, body);
+            const base64Content = utf8_to_b64(fullContent);
+            const isNew = !currentEditingPost.sha;
+            const targetPath = `source/_posts/${filename}`;
+
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = `<div class="spinner"></div> 发射中...`;
+            showToast("正在提交修改至 GitHub...", "info");
+
+            const payload = {
+                message: isNew ? `Create post: ${title}` : `Update post: ${title}`,
+                content: base64Content,
+                branch: BRANCH
+            };
+
+            // If updating, we must supply the SHA
+            if (!isNew) {
+                payload.sha = currentEditingPost.sha;
+                
+                // If title was edited and filename changed, we need to create new and delete the old
+                if (currentEditingPost.path !== targetPath) {
+                    try {
+                        showToast("重命名文章中...", "info");
+                        // 1. Put new file (creates it)
+                        await githubAPIRequest(`/contents/${targetPath}`, {
+                            method: 'PUT',
+                            body: JSON.stringify({
+                                message: `Rename (create): ${title}`,
+                                content: base64Content,
+                                branch: BRANCH
+                            })
+                        });
+
+                        // 2. Delete old file
+                        await githubAPIRequest(`/contents/${currentEditingPost.path}`, {
+                            method: 'DELETE',
+                            body: JSON.stringify({
+                                message: `Rename (delete old): ${title}`,
+                                sha: currentEditingPost.sha,
+                                branch: BRANCH
+                            })
+                        });
+
+                        showToast("文章重命名并保存成功！部署已触发", "success");
+                        postSaveCleanup();
+                        return;
+                    } catch (e) {
+                        console.error(e);
+                        showToast(`保存并重命名失败: ${e.message}`, "error");
+                        saveBtn.disabled = false;
+                        saveBtn.innerText = "🚀 发射上线 (Publish)";
+                        return;
+                    }
+                }
+            }
+
+            try {
+                await githubAPIRequest(`/contents/${targetPath}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(payload)
+                });
+
+                showToast(isNew ? "新建文章成功！自动部署已触发" : "更新文章保存成功！自动部署已触发", "success");
+                postSaveCleanup();
+            } catch (err) {
+                console.error(err);
+                showToast(`保存失败: ${err.message}`, "error");
+                saveBtn.disabled = false;
+                saveBtn.innerText = "🚀 发射上线 (Publish)";
+            }
+        }
+
+        function postSaveCleanup() {
+            cancelEdit();
+            fetchPostList();
+            setTimeout(fetchPipelineStatus, 3000); // Check pipeline after 3 seconds
+        }
+
+        // Delete post flow
+        function confirmDeletePost(post) {
+            postToDelete = post;
+            const displayTitle = post.name.replace(/\.md$/, '').replace(/-/g, ' ');
+            document.getElementById('delete-post-title').innerText = displayTitle;
+            document.getElementById('delete-modal').style.display = 'flex';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('delete-modal').style.display = 'none';
+            postToDelete = null;
+        }
+
+        async function executeDeletePost() {
+            if (!postToDelete) return;
+            const confirmBtn = document.getElementById('delete-confirm-btn');
+            
+            confirmBtn.disabled = true;
+            confirmBtn.innerHTML = `<div class="spinner"></div> 正在销毁...`;
+            showToast("正在删除文件...", "info");
+
+            try {
+                // Delete request
+                await githubAPIRequest(`/contents/${postToDelete.path}`, {
+                    method: 'DELETE',
+                    body: JSON.stringify({
+                        message: `Delete post: ${postToDelete.name.replace(/\.md$/, '')}`,
+                        sha: postToDelete.sha,
+                        branch: BRANCH
+                    })
+                });
+
+                showToast("文章已成功销毁！部署已触发", "success");
+                closeDeleteModal();
+                cancelEdit();
+                fetchPostList();
+                setTimeout(fetchPipelineStatus, 3500);
+            } catch (err) {
+                console.error(err);
+                showToast(`删除失败: ${err.message}`, "error");
+            } finally {
+                confirmBtn.disabled = false;
+                confirmBtn.innerText = "确定删除";
+            }
+        }
+    </script>
+</body>
+</html>
