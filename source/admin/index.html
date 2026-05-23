@@ -236,6 +236,48 @@
             box-shadow: 0 0 6px rgba(0, 229, 255, 0.15);
         }
 
+        /* Tag Selector Styling */
+        .tag-selector-container {
+            margin-top: 8px;
+        }
+        .tag-selector-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            max-height: 120px;
+            overflow-y: auto;
+            padding: 6px;
+            border: 1px dashed rgba(0, 229, 255, 0.15);
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            margin-bottom: 6px;
+        }
+        .tag-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            margin: 2px 0;
+        }
+        .tag-pill:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+        }
+        .tag-pill.active {
+            background-color: rgba(100, 255, 218, 0.1);
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: 0 0 8px rgba(100, 255, 218, 0.3);
+            text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+        }
+
         /* App Panel Layout (Main Interface) */
         #app-panel {
             display: none;
@@ -737,6 +779,8 @@
         let postsDataList = [];
         let currentEditingPost = null; // Holds { name, path, sha, frontMatter, content }
         let postToDelete = null;
+        let globalTagsList = [];
+        let globalTagsSha = null;
 
         // Custom Helper: Hex string to Uint8Array
         function hexToBytes(hex) {
@@ -860,6 +904,47 @@
             document.getElementById('app-panel').style.display = 'block';
             fetchPostList();
             fetchPipelineStatus();
+            fetchTagsList();
+        }
+
+        async function fetchTagsList() {
+            try {
+                const response = await githubAPIRequest(`/contents/source/_data/tags.json?ref=${BRANCH}`);
+                const rawContent = b64_to_utf8(response.content);
+                globalTagsList = JSON.parse(rawContent);
+                globalTagsSha = response.sha;
+            } catch (err) {
+                console.warn("读取 tags.json 失败，将使用默认标签", err);
+                globalTagsList = ["光电信息", "AI工具", "学习心得"];
+                globalTagsSha = null;
+            }
+        }
+
+        async function saveTagsList() {
+            if (!gitHubToken) return;
+            const contentStr = JSON.stringify(globalTagsList, null, 2);
+            const base64Content = utf8_to_b64(contentStr);
+
+            const payload = {
+                message: "update tags record list",
+                content: base64Content,
+                branch: BRANCH
+            };
+            if (globalTagsSha) {
+                payload.sha = globalTagsSha;
+            }
+
+            try {
+                const res = await githubAPIRequest(`/contents/source/_data/tags.json`, {
+                    method: 'PUT',
+                    body: JSON.stringify(payload)
+                });
+                globalTagsSha = res.content.sha;
+                showToast("标签记录已同步到云端", "success");
+            } catch (err) {
+                console.error("同步标签记录失败:", err);
+                showToast("同步标签记录至云端失败", "error");
+            }
         }
 
         function handleLogout() {
@@ -1103,8 +1188,12 @@ ${body}`;
                     </div>
                     <div class="editor-header-fields">
                         <div class="form-group">
-                            <label>标签 (Tags，英文逗号分隔)</label>
-                            <input type="text" id="edit-tags" class="form-input" value="${Array.isArray(fm.tags) ? fm.tags.join(', ') : ''}" placeholder="光电, AI工具, 学习心得">
+                            <label>标签 (Tags，英文逗号分隔，可点击下方快速选择)</label>
+                            <input type="text" id="edit-tags" class="form-input" value="${Array.isArray(fm.tags) ? fm.tags.join(', ') : ''}" placeholder="光电, AI工具, 学习心得" oninput="renderTagPills()">
+                            <div class="tag-selector-container">
+                                <div class="tag-selector-pills" id="tag-selector-pills"></div>
+                                <button type="button" class="neon-btn btn-cyan" onclick="addNewTag()" style="padding: 4px 10px; font-size: 11px; margin-top: 6px; display: inline-block;">➕ 添加新标签</button>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>文件名 (只读预览，由标题自动换算)</label>
@@ -1134,6 +1223,72 @@ ${body}`;
                     </div>
                 </div>
             `;
+            setTimeout(renderTagPills, 0);
+        }
+
+        // Render tag pills selection UI
+        function renderTagPills() {
+            const pillsContainer = document.getElementById('tag-selector-pills');
+            if (!pillsContainer) return;
+
+            const tagsInput = document.getElementById('edit-tags');
+            const activeTags = tagsInput.value.split(',')
+                .map(t => t.trim())
+                .filter(Boolean);
+
+            pillsContainer.innerHTML = '';
+            
+            if (globalTagsList.length === 0) {
+                pillsContainer.innerHTML = `<div style="font-size: 11px; color: var(--text-muted); padding: 4px;">暂无保存的标签，请点击按钮添加。</div>`;
+                return;
+            }
+
+            const sortedTags = [...globalTagsList].sort((a, b) => a.localeCompare(b, 'zh'));
+            
+            sortedTags.forEach(tag => {
+                const isActive = activeTags.includes(tag);
+                const pill = document.createElement('span');
+                pill.className = `tag-pill ${isActive ? 'active' : ''}`;
+                pill.innerText = tag;
+                pill.onclick = () => {
+                    let tags = tagsInput.value.split(',').map(t => t.trim()).filter(Boolean);
+                    if (tags.includes(tag)) {
+                        tags = tags.filter(t => t !== tag);
+                    } else {
+                        tags.push(tag);
+                    }
+                    tagsInput.value = tags.join(', ');
+                    renderTagPills();
+                };
+                pillsContainer.appendChild(pill);
+            });
+        }
+
+        // Add new tag to the permanent list and repository
+        async function addNewTag() {
+            const newTagName = prompt("请输入您想添加的永久新标签：");
+            if (!newTagName) return;
+            const cleanedTag = newTagName.trim();
+            if (!cleanedTag) return;
+            
+            if (globalTagsList.includes(cleanedTag)) {
+                showToast("该标签已存在！", "info");
+                return;
+            }
+
+            globalTagsList.push(cleanedTag);
+            
+            showToast("正在保存新标签...", "info");
+            await saveTagsList();
+            
+            const tagsInput = document.getElementById('edit-tags');
+            let currentTags = tagsInput.value.split(',').map(t => t.trim()).filter(Boolean);
+            if (!currentTags.includes(cleanedTag)) {
+                currentTags.push(cleanedTag);
+            }
+            tagsInput.value = currentTags.join(', ');
+            
+            renderTagPills();
         }
 
         // Auto filename generator from title
@@ -1275,6 +1430,22 @@ ${body}`;
             const tags = tagsRaw.split(',')
                 .map(t => t.trim())
                 .filter(Boolean);
+
+            // Auto sync newly typed tags to tags.json
+            let newTagsAdded = false;
+            tags.forEach(t => {
+                if (!globalTagsList.includes(t)) {
+                    globalTagsList.push(t);
+                    newTagsAdded = true;
+                }
+            });
+            if (newTagsAdded) {
+                try {
+                    await saveTagsList();
+                } catch (e) {
+                    console.error("Auto-syncing newly typed tags failed:", e);
+                }
+            }
 
             const updatedFM = {
                 title,
