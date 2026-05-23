@@ -921,9 +921,9 @@ cusdis:
 # See: https://giscus.app/
 giscus:
   repo: mm2672653902-star/mm2672653902-star.github.io
-  repo-id: # 待填写 (从 giscus.app 获取后填入，形如 R_kgD...)
+  repo-id: R_kgDOSk_xrw
   category: Announcements
-  category-id: # 待填写 (从 giscus.app 获取后填入，形如 DIC_kwD...)
+  category-id: DIC_kwDOSk_xr84C9qIx
   theme-light: light
   theme-dark: noborder_dark
   mapping: pathname
