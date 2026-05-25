@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- KaTeX Math Rendering Support -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
     <style>
         /* Cyberpunk Design System Variables */
         :root {
@@ -1340,7 +1343,41 @@ ${body}`;
         function simpleMarkdownRender(md) {
             if (!md) return '<p style="color:var(--text-muted)">无内容预览</p>';
             
-            let html = md
+            const codeBlocks = [];
+            const inlineCode = [];
+            const mathBlocks = [];
+            const inlineMath = [];
+
+            // 1. Hide Code Blocks
+            let processed = md.replace(/```([\s\S]*?)```/g, (match, content) => {
+                const id = `@@CODE_BLOCK_${codeBlocks.length}@@`;
+                codeBlocks.push(content);
+                return id;
+            });
+
+            // 2. Hide Inline Code
+            processed = processed.replace(/`([^`]+)`/g, (match, content) => {
+                const id = `@@INLINE_CODE_${inlineCode.length}@@`;
+                inlineCode.push(content);
+                return id;
+            });
+
+            // 3. Hide Block Math ($$...$$)
+            processed = processed.replace(/\$\$([\s\S]+?)\$\$/g, (match, content) => {
+                const id = `@@MATH_BLOCK_${mathBlocks.length}@@`;
+                mathBlocks.push(content);
+                return id;
+            });
+
+            // 4. Hide Inline Math ($...$)
+            processed = processed.replace(/\$([^\$\n]+?)\$/g, (match, content) => {
+                const id = `@@INLINE_MATH_${inlineMath.length}@@`;
+                inlineMath.push(content);
+                return id;
+            });
+
+            // 5. HTML Escape and Markdown Parsing
+            let html = processed
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;');
@@ -1353,22 +1390,61 @@ ${body}`;
             // Blockquotes
             html = html.replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>');
             
-            // Inline code
-            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-            
-            // Code Blocks
-            html = html.replace(/```([\s\S]*?)```/gm, '<pre><code>$1</code></pre>');
-            
             // Bold
             html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
             
             // Paragraphs (simplified)
             html = html.split('\n\n').map(p => {
-                if (p.trim().startsWith('<h') || p.trim().startsWith('<blockquote') || p.trim().startsWith('<pre')) {
+                const trimmed = p.trim();
+                if (trimmed.startsWith('<h') || trimmed.startsWith('<blockquote') || trimmed.startsWith('@@CODE_BLOCK_')) {
                     return p;
                 }
                 return `<p>${p.replace(/\n/g, '<br>')}</p>`;
             }).join('');
+
+            // 6. Restore Code Blocks
+            html = html.replace(/@@CODE_BLOCK_(\d+)@@/g, (match, index) => {
+                const content = codeBlocks[parseInt(index, 10)]
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+                return `<pre><code>${content}</code></pre>`;
+            });
+
+            // 7. Restore Inline Code
+            html = html.replace(/@@INLINE_CODE_(\d+)@@/g, (match, index) => {
+                const content = inlineCode[parseInt(index, 10)]
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+                return `<code>${content}</code>`;
+            });
+
+            // 8. Restore Block Math
+            html = html.replace(/@@MATH_BLOCK_(\d+)@@/g, (match, index) => {
+                const formula = mathBlocks[parseInt(index, 10)];
+                if (typeof katex !== 'undefined') {
+                    try {
+                        return katex.renderToString(formula, { displayMode: true, throwOnError: false });
+                    } catch (e) {
+                        return `<span class="katex-error" style="color:var(--neon-red)" title="${e.message}">$$${formula}$$</span>`;
+                    }
+                }
+                return `$$${formula}$$`;
+            });
+
+            // 9. Restore Inline Math
+            html = html.replace(/@@INLINE_MATH_(\d+)@@/g, (match, index) => {
+                const formula = inlineMath[parseInt(index, 10)];
+                if (typeof katex !== 'undefined') {
+                    try {
+                        return katex.renderToString(formula, { displayMode: false, throwOnError: false });
+                    } catch (e) {
+                        return `<span class="katex-error" style="color:var(--neon-red)" title="${e.message}">$${formula}$</span>`;
+                    }
+                }
+                return `$${formula}$`;
+            });
 
             return html;
         }

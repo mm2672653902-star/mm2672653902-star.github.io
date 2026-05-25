@@ -48,4 +48,25 @@
 
 <% } else if (theme.post.math.engine === 'katex') { %>
   <% import_css(theme.static_prefix.katex, 'katex.min.css') %>
+  <%
+    import_script(`
+      <script>
+        Fluid.utils.createScript('${url_join(theme.static_prefix.katex, 'katex.min.js')}', function() {
+          Fluid.utils.createScript('${url_join(theme.static_prefix.katex, 'contrib/auto-render.min.js')}', function() {
+            var renderMath = function() {
+              renderMathInElement(document.body, {
+                delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+              });
+            };
+            renderMath();
+            Fluid.events.registerRefreshCallback(renderMath);
+          });
+        });
+      </script>
+    `)
+  %>
 <% } %>
