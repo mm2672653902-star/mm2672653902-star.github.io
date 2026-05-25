@@ -124,6 +124,16 @@ async function main() {
             }
         }
 
+        // Update Git Remote URL
+        try {
+            const { execSync } = require('child_process');
+            const repoUrl = `https://${token}@github.com/mm2672653902-star/mm2672653902-star.github.io.git`;
+            execSync(`git remote set-url origin ${repoUrl}`, { stdio: 'ignore' });
+            console.log("✓ 本地 Git 仓库的远程推送地址已成功更新新的 Token！");
+        } catch (e) {
+            console.warn("⚠️ 自动更新 Git 远程地址失败，若需要可通过命令手动更新:", e.message);
+        }
+
         console.log("\n更新完成！请运行以下命令将更新部署到云端：");
         console.log("  git add .");
         console.log("  git commit -m \"chore: 更新 GitHub Token\"");
