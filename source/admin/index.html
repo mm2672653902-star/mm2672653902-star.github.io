@@ -687,6 +687,14 @@
                     <label for="password">验证密码</label>
                     <input type="password" id="password" class="form-input" autocomplete="current-password" required placeholder="输入密码">
                 </div>
+                <div class="form-group">
+                    <label for="deepseek-key">DeepSeek API Key (可选)</label>
+                    <input type="password" id="deepseek-key" class="form-input" placeholder="输入 Key 以启动 AI 排版">
+                </div>
+                <div class="form-group">
+                    <label for="deepseek-url">DeepSeek API 地址</label>
+                    <input type="text" id="deepseek-url" class="form-input" value="https://api.deepseek.com/v1" placeholder="默认: https://api.deepseek.com/v1">
+                </div>
                 <button type="submit" class="neon-btn btn-cyan" style="width: 100%; margin-top: 10px;">
                     <span>解密登录</span>
                 </button>
@@ -784,6 +792,9 @@
         let postToDelete = null;
         let globalTagsList = [];
         let globalTagsSha = null;
+        let deepseekApiKey = "";
+        let deepseekApiUrl = "https://api.deepseek.com/v1";
+        let lastAiResult = "";
 
         // Custom Helper: Hex string to Uint8Array
         function hexToBytes(hex) {
@@ -879,6 +890,8 @@
             const cachedToken = sessionStorage.getItem('MAO_BLOG_TOKEN');
             if (cachedToken) {
                 gitHubToken = cachedToken;
+                deepseekApiKey = sessionStorage.getItem('DEEPSEEK_API_KEY') || '';
+                deepseekApiUrl = sessionStorage.getItem('DEEPSEEK_API_URL') || 'https://api.deepseek.com/v1';
                 showPanel();
             }
         });
@@ -888,6 +901,8 @@
             e.preventDefault();
             const user = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value;
+            const dsKey = document.getElementById('deepseek-key').value.trim();
+            const dsUrl = document.getElementById('deepseek-url').value.trim() || 'https://api.deepseek.com/v1';
             
             showToast("解密验证中...", "info");
             
@@ -895,6 +910,12 @@
             if (decryptedToken && decryptedToken.startsWith("ghp_")) {
                 gitHubToken = decryptedToken;
                 sessionStorage.setItem('MAO_BLOG_TOKEN', gitHubToken);
+                
+                deepseekApiKey = dsKey;
+                deepseekApiUrl = dsUrl;
+                sessionStorage.setItem('DEEPSEEK_API_KEY', dsKey);
+                sessionStorage.setItem('DEEPSEEK_API_URL', dsUrl);
+                
                 showToast("解密登录成功！进入极客中心", "success");
                 showPanel();
             } else {
@@ -1205,9 +1226,15 @@ ${body}`;
                     </div>
 
                     <div>
-                        <div class="editor-tab-bar">
-                            <button class="editor-tab active" id="tab-write-btn" onclick="switchEditorTab('write')">编辑器 (Markdown)</button>
-                            <button class="editor-tab" id="tab-preview-btn" onclick="switchEditorTab('preview')">实时预览</button>
+                        <div class="editor-tab-bar" style="display: flex; justify-content: space-between; align-items: center; gap: 2px;">
+                            <div>
+                                <button class="editor-tab active" id="tab-write-btn" onclick="switchEditorTab('write')">编辑器 (Markdown)</button>
+                                <button class="editor-tab" id="tab-preview-btn" onclick="switchEditorTab('preview')">实时预览</button>
+                            </div>
+                            <div style="display: flex; gap: 8px; align-items: center; margin-right: 10px;">
+                                <button type="button" class="neon-btn btn-green" id="ai-apply-btn" onclick="applyAiChanges()" style="padding: 4px 12px; font-size: 11px; display: none; height: 28px; line-height: 1;">应用 AI 修改</button>
+                                <button type="button" class="neon-btn btn-cyan" id="ai-typeset-btn" onclick="runAiTypeset()" style="padding: 4px 12px; font-size: 11px; height: 28px; line-height: 1;">🤖 AI 智能排版</button>
+                            </div>
                         </div>
                         
                         <div class="editor-workspace">
@@ -1652,6 +1679,92 @@ ${body}`;
             } finally {
                 confirmBtn.disabled = false;
                 confirmBtn.innerText = "确定删除";
+            }
+        }
+
+        // DeepSeek AI Typeset functions
+        async function runAiTypeset() {
+            const textarea = document.getElementById('edit-body');
+            const preview = document.getElementById('edit-preview');
+            const aiBtn = document.getElementById('ai-typeset-btn');
+            const applyBtn = document.getElementById('ai-apply-btn');
+
+            if (!textarea) return;
+            const text = textarea.value;
+
+            if (!text.trim()) {
+                showToast("请先输入内容再进行 AI 排版！", "error");
+                return;
+            }
+
+            if (!deepseekApiKey) {
+                showToast("请先在登录页面输入 DeepSeek API Key 才能使用 AI 排版助理", "error");
+                return;
+            }
+
+            // Disable button and show Loading indicator
+            aiBtn.disabled = true;
+            const originalText = aiBtn.innerHTML;
+            aiBtn.innerHTML = `<span class="loading-spinner" style="width:12px; height:12px; border-width:2px; vertical-align:middle; margin-right:4px;"></span> 正在排版中...`;
+
+            try {
+                const response = await fetch(`${deepseekApiUrl}/chat/completions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${deepseekApiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'deepseek-chat',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: '你是一个专业的博客文章排版助理。请保持用户文章的原始核心意图和内容绝对不变。你的任务是：修正错别字、理顺语序、补充标点，并将其转换为排版优雅、层次分明的标准 Markdown 格式。如果文中包含数学公式，必须严格转换为标准的 LaTeX 格式（行内公式用单美刀 $...$，块级公式用双美刀 $$...$$），以便前端的 KaTeX 能够正常渲染。不要输出任何解释性废话，直接返回排版后的 Markdown 正文。'
+                            },
+                            {
+                                role: 'user',
+                                content: text
+                            }
+                        ],
+                        temperature: 0.2
+                    })
+                });
+
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => ({}));
+                    throw new Error(errData.error?.message || `HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+                lastAiResult = data.choices[0].message.content;
+
+                // Render result to preview area
+                preview.innerHTML = simpleMarkdownRender(lastAiResult);
+                
+                // Switch to preview tab
+                switchEditorTab('preview');
+                
+                // Show "Apply AI Changes" button
+                applyBtn.style.display = 'inline-block';
+                showToast("AI 排版已生成，请在预览区确认后点击“应用”", "success");
+            } catch (err) {
+                console.error("AI Typesetting error:", err);
+                showToast(`AI 排版失败: ${err.message}`, "error");
+            } finally {
+                aiBtn.disabled = false;
+                aiBtn.innerHTML = originalText;
+            }
+        }
+
+        function applyAiChanges() {
+            const textarea = document.getElementById('edit-body');
+            const applyBtn = document.getElementById('ai-apply-btn');
+
+            if (textarea && lastAiResult) {
+                textarea.value = lastAiResult;
+                switchEditorTab('write');
+                applyBtn.style.display = 'none';
+                showToast("已应用 AI 修改！", "success");
             }
         }
     </script>
