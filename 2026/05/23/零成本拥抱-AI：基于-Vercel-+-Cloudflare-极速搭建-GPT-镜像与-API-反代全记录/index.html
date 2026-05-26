@@ -19,25 +19,26 @@
   <meta name="author" content="Mao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="当光电信息科学的严谨与 AI 智能体的闭环执行力发生碰撞，会产生怎样的火花？本文记录了一场通过纯口头指令驱动本地 Agent、在 10 分钟内全自动搭建并部署专属技术博客的实战经历，并分享关于光电美学与 AI 安全边界的深层思考。  引言：当光电美学遇见 AI 智能体在光电信息科学与工程的学习中，我们无数次与“光”打交道——从 Zemax 中红蓝交织的双胶合透镜消色差光路，到半导体物理中严密的能">
+    <meta name="description" content="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像网站与 API 反代全记录  前言身处 AI 爆发的时代，大语言模型（LLM）已经成为了工程师、学生和职场人的生产力标配。然而，网络门槛、官方 API 的连接限制以及昂贵的跨国账单，常常让国内的开发者和普通用户望而却步。 为了解决这个问题，我决定利用手头闲置的域名 maoxijia.top，打造一套专属于自己的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考">
-<meta property="og:url" content="https://blog.maoxijia.top/2026/05/22/%E5%9F%BA%E4%BA%8E-AI-Agent-%E9%97%AD%E7%8E%AF%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%85%A8%E8%87%AA%E5%8A%A8%E9%BB%91%E7%A7%91%E6%8A%80%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99%E5%AE%9E%E6%88%98%E4%B8%8E%E5%85%89%E7%94%B5%E7%BE%8E%E5%AD%A6%E6%80%9D%E8%80%83/index.html">
+<meta property="og:title" content="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录">
+<meta property="og:url" content="https://blog.maoxijia.top/2026/05/23/%E9%9B%B6%E6%88%90%E6%9C%AC%E6%8B%A5%E6%8A%B1-AI%EF%BC%9A%E5%9F%BA%E4%BA%8E-Vercel-+-Cloudflare-%E6%9E%81%E9%80%9F%E6%90%AD%E5%BB%BA-GPT-%E9%95%9C%E5%83%8F%E4%B8%8E-API-%E5%8F%8D%E4%BB%A3%E5%85%A8%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="小毛的blog空间">
-<meta property="og:description" content="当光电信息科学的严谨与 AI 智能体的闭环执行力发生碰撞，会产生怎样的火花？本文记录了一场通过纯口头指令驱动本地 Agent、在 10 分钟内全自动搭建并部署专属技术博客的实战经历，并分享关于光电美学与 AI 安全边界的深层思考。  引言：当光电美学遇见 AI 智能体在光电信息科学与工程的学习中，我们无数次与“光”打交道——从 Zemax 中红蓝交织的双胶合透镜消色差光路，到半导体物理中严密的能">
+<meta property="og:description" content="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像网站与 API 反代全记录  前言身处 AI 爆发的时代，大语言模型（LLM）已经成为了工程师、学生和职场人的生产力标配。然而，网络门槛、官方 API 的连接限制以及昂贵的跨国账单，常常让国内的开发者和普通用户望而却步。 为了解决这个问题，我决定利用手头闲置的域名 maoxijia.top，打造一套专属于自己的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-05-22T14:22:53.000Z">
-<meta property="article:modified_time" content="2026-05-23T05:33:34.075Z">
+<meta property="article:published_time" content="2026-05-23T05:52:38.000Z">
+<meta property="article:modified_time" content="2026-05-23T14:00:50.098Z">
 <meta property="article:author" content="Mao">
 <meta property="article:tag" content="AI工具">
-<meta property="article:tag" content="学习心得">
+<meta property="article:tag" content="反向代理">
+<meta property="article:tag" content="镜像">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考 - 小毛的blog空间</title>
+  <title>零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录 - 小毛的blog空间</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -338,7 +339,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考"></span>
+            <span id="subtitle" data-typed-text="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录"></span>
           
         </div>
 
@@ -349,8 +350,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-05-22 22:22" pubdate>
-          2026年5月22日 晚上
+        <time datetime="2026-05-23 13:52" pubdate>
+          2026年5月23日 下午
         </time>
       </span>
     
@@ -361,7 +362,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          3.9k 字
         
       </span>
     
@@ -372,7 +373,7 @@
         
         
         
-          29 分钟
+          33 分钟
         
       </span>
     
@@ -411,53 +412,133 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考</h1>
+            <h1 id="seo-header">零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>当光电信息科学的严谨与 AI 智能体的闭环执行力发生碰撞，会产生怎样的火花？本文记录了一场通过纯口头指令驱动本地 Agent、在 10 分钟内全自动搭建并部署专属技术博客的实战经历，并分享关于光电美学与 AI 安全边界的深层思考。</p>
+<p>零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像网站与 API 反代全记录</p>
 </blockquote>
-<h2 id="引言：当光电美学遇见-AI-智能体"><a href="#引言：当光电美学遇见-AI-智能体" class="headerlink" title="引言：当光电美学遇见 AI 智能体"></a>引言：当光电美学遇见 AI 智能体</h2><p>在光电信息科学与工程的学习中，我们无数次与“光”打交道——从 Zemax 中红蓝交织的双胶合透镜消色差光路，到半导体物理中严密的能带结构。光电的世界是严谨、纯粹且极具未来感的。作为一名科技探索者，我一直渴望拥有一个属于自己的精神根据地，一个能够记录自己在光学设计、电路分析以及 AI 自动化工具研究中点滴心得的赛博空间。</p>
-<p>我不希望这个空间是平庸的。它必须足够硬核：纯黑的夜空底色、霓虹般的线条、简约的架构，最重要的是，它的搭建与日常维护必须符合极客的逻辑——全自动化。</p>
-<p>2026 年 5 月 22 日夜晚，我利用本地 AI 智能体终端协作平台，配合搭载的 Gemini 3.5 Flash 模型，在不给 AI 云端暴露核心隐私的前提下，通过纯大白话命令指挥，在短短 10 分钟内，打通了本地环境、GitHub Pages 远程仓库与 Cloudflare 全球 CDN 网络，从零拔地而起了一座完全属于我自己的技术博客：“小毛的blog空间”（maoxijia.top）。</p>
-<p>本文将深度还原这一场“动嘴流”的黑客建站实战，并分享我在 AI 自动化和信息安全边界上的全新体会。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>身处 AI 爆发的时代，大语言模型（LLM）已经成为了工程师、学生和职场人的生产力标配。然而，网络门槛、官方 API 的连接限制以及昂贵的跨国账单，常常让国内的开发者和普通用户望而却步。</p>
+<p>为了解决这个问题，我决定利用手头闲置的域名 <code>maoxijia.top</code>，打造一套专属于自己的 AI 基础设施。今天，我利用 Google 开源&#x2F;推荐的高性能反向代理方案（Antigravity 架构思想），配合前端托管神器 <strong>Vercel</strong> 以及网络优化大师 <strong>Cloudflare (CF)</strong>，成功部署了两个平台：</p>
+<ol>
+<li><strong>AI 镜像网站：</strong> <code>ai.maoxijia.top</code>（提供给用户直接交互的网页端）</li>
+<li><strong>API 反代网站：</strong> <code>api.maoxijia.top</code>（提供给开发环境、第三方客户端直接调用的安全接口）</li>
+</ol>
+<p>这套方案最大的优势在于：<strong>完全免费、无需购买海外服务器、自带全球 CDN 加速、且能有效防御恶意攻击</strong>。本文将毫无保留地把搭建全过程分享出来，希望能帮到有相同需求的朋友。</p>
 <hr>
-<h2 id="一、-顶层架构设计：安全、速度与美学的平衡"><a href="#一、-顶层架构设计：安全、速度与美学的平衡" class="headerlink" title="一、 顶层架构设计：安全、速度与美学的平衡"></a>一、 顶层架构设计：安全、速度与美学的平衡</h2><p>在敲下第一行指令前，我对博客的整个拓扑结构进行了理性的工程规划。一个成熟的个人静态博客，必须解决三个核心痛点：安全性、访问速度（免翻墙）和日常发布的零摩擦力。</p>
-<h3 id="防御性工程：本地保险箱原则"><a href="#防御性工程：本地保险箱原则" class="headerlink" title="防御性工程：本地保险箱原则"></a>防御性工程：本地保险箱原则</h3><p>很多初学者在调用 AI 自动部署时，会图省事直接把 GitHub Token（个人访问令牌）贴进 AI 的对话框里。这在网络安全中是极度危险的。AI 运行在云端，任何敏感钥匙在网络链路上的闪现，都有可能被拦截、缓存或触发平台自身的安全吊销机制。</p>
-<p>我的方案是“本地保险箱原则”：在本地文件夹建立 <code>env.txt</code>，将钥匙留在本地硬盘上。利用智能体的本地执行权，让 AI 自己去本地保险箱拿钥匙，全程不经过云端网络传输。</p>
-<h3 id="网络拓扑：GitHub-托管-Cloudflare-边缘加速"><a href="#网络拓扑：GitHub-托管-Cloudflare-边缘加速" class="headerlink" title="网络拓扑：GitHub 托管 + Cloudflare 边缘加速"></a>网络拓扑：GitHub 托管 + Cloudflare 边缘加速</h3><ul>
-<li><strong>代码托管</strong>：利用 GitHub Pages，免去了维护传统 VPS 服务器的繁琐，实现零成本、高稳定的代码托管。</li>
-<li><strong>全球加速（免翻墙）</strong>：直接连 GitHub Pages 在国内往往会被墙或严重卡顿。通过在 Cloudflare 中配置 CNAME 记录，并开启 Proxied（代理状态），让 Cloudflare 的全球边缘节点作为国内用户的流量入口。利用 CF 的 CNAME Flattening（展平技术），用户访问顶级域名 <code>maoxijia.top</code> 时将由 CF 全球 CDN 直接秒级响应吐出静态网页，完美实现国内免翻墙秒开。</li>
-</ul>
-<h3 id="视觉与功能：纯黑极简与全局搜索"><a href="#视觉与功能：纯黑极简与全局搜索" class="headerlink" title="视觉与功能：纯黑极简与全局搜索"></a>视觉与功能：纯黑极简与全局搜索</h3><p>采用 Hexo 阵营中极具现代科技感的 Hexo-theme-Fluid 主题，强制锁定纯黑（<code>#000000</code>）背景与深黑（<code>#080808</code>）卡片，辅以霓虹蓝（<code>#00e5ff</code>）与荧光绿（<code>#64ffda</code>）的流线特效，将光电实验室的“暗室极客感”搬上网页。同时，集成本地搜索插件，确保未来大规模海量笔记的快速索引。</p>
-<hr>
-<h2 id="二、-自动化建站实战：Gemini-3-5-Flash-闭环执行"><a href="#二、-自动化建站实战：Gemini-3-5-Flash-闭环执行" class="headerlink" title="二、 自动化建站实战：Gemini 3.5 Flash 闭环执行"></a>二、 自动化建站实战：Gemini 3.5 Flash 闭环执行</h2><p>配置好 Cloudflare 的 CNAME 解析后，剩下的所有脏活、累活、配置活，我都交给了 Gemini 3.5 Flash。不得不说，作为速度与效率的担当，智能体在本地沙箱中展现出了极其恐怖的执行力。</p>
-<h3 id="Step-1-环境探测与-Hexo-初始化"><a href="#Step-1-环境探测与-Hexo-初始化" class="headerlink" title="Step 1: 环境探测与 Hexo 初始化"></a>Step 1: 环境探测与 Hexo 初始化</h3><p>向智能体发布总指挥指令后，Gemini 3.5 Flash 闪电般读取了本地 <code>env.txt</code>。它在后台调用 Powershell，自动检测我电脑里的 Node.js 环境与 Git 环境。<br>在确认依赖完备后，它静默执行了 <code>npx hexo init</code> 命令。这个命令需要去国外服务器拉取 Hexo 博客的底层脚手架。在长达两三分钟的后台静默下载期，智能体表现得非常稳健，成功将整套博客源码生成在我的 <code>F:\blog</code> 目录中。</p>
-<h3 id="Step-2-主题克隆与暗黑皮肤微调"><a href="#Step-2-主题克隆与暗黑皮肤微调" class="headerlink" title="Step 2: 主题克隆与暗黑皮肤微调"></a>Step 2: 主题克隆与暗黑皮肤微调</h3><p>基础框架搭建完毕后，智能体自动通过 Git 将 <code>hexo-theme-fluid</code> 下载到本地。随后，它发挥了毫秒级的文件读写优势，直接切入核心配置文件，执行了以下定向手术：</p>
+<h2 id="一、-核心架构与工具链介绍"><a href="#一、-核心架构与工具链介绍" class="headerlink" title="一、 核心架构与工具链介绍"></a>一、 核心架构与工具链介绍</h2><p>在正式动手前，我们需要明白这套架构是如何运作的。简单来说，它由以下几个“乐高积木”搭建而成：</p>
 <ul>
-<li>将博客名称硬编码修改为：<code>小毛的blog空间</code>。</li>
-<li>将站点默认语言强制切换为：<code>zh-CN</code>（简体中文）。</li>
-<li>修改 <code>custom.css</code>，注入纯黑与霓虹色彩的微光特效。</li>
-<li>定制自定义新建文章模版，将作者固定为 <code>Xijia Mao</code>，并默认挂载 <code>[光电信息, AI工具, 学习心得]</code> 的元数据标签。</li>
+<li><strong>Antigravity 核心方案</strong>：基于高性能反代逻辑，专门处理复杂的请求重写、Header 伪装以及多账号轮询，确保国内请求能稳定顺畅地送达 OpenAI 等海外服务器。</li>
+<li><strong>Vercel</strong>：全球顶级的 Serverless（无服务器）托管平台。我们不需要购买 VPS，直接将代码托管在 GitHub，Vercel 会自动监听并完成自动化部署（CI&#x2F;CD），并提供强大的 Edge Functions（边缘函数）来运行反代逻辑。</li>
+<li><strong>Cloudflare</strong>：全球网络安全与加速巨头。在这里它充当两个角色：一是 <strong>DNS 域名解析与防护</strong>，隐藏 Vercel 的真实分配 IP，防止网站被 DDoS 攻击；二是 <strong>网络优化</strong>，通过其全球边缘节点，大幅缩短国内访问的反响时间。</li>
 </ul>
-<h3 id="Step-3-Git-凭证打通与首次发布"><a href="#Step-3-Git-凭证打通与首次发布" class="headerlink" title="Step 3: Git 凭证打通与首次发布"></a>Step 3: Git 凭证打通与首次发布</h3><p>在执行最后的发布命令时，本地 Git 触发了 Windows 系统的凭证管理器弹窗。为了彻底消灭未来的手动干预，我选择切换到 Token 验证模式，将干净的新 GitHub Token 贴入弹窗。系统在底层记住这把钥匙后，智能体一气呵成地完成了首次网页打包编译，并将静态网页资源顺利推送到 GitHub Page 仓库中。</p>
-<p>整个过程，除了在权限申请时我点击了 <em>Yes, and always allow</em>（总是允许）以及一次 Token 粘贴外，我没有手动敲击任何一行代码，没有翻阅任何配置文档，网站便全自动落成！</p>
+<p>架构链路图大致如下：<br><code>用户请求 -&gt; Cloudflare (安全防护/CDN) -&gt; Vercel Edge (运行 Antigravity 逻辑) -&gt; OpenAI API 终点</code></p>
 <hr>
-<h2 id="三、-极客体验：一键批处理与写文章的零摩擦力"><a href="#三、-极客体验：一键批处理与写文章的零摩擦力" class="headerlink" title="三、 极客体验：一键批处理与写文章的零摩擦力"></a>三、 极客体验：一键批处理与写文章的零摩擦力</h2><p>为了实现“快捷发布”，智能体非常贴心地在我的博客根目录下生成了一个名为“快捷发布文章.bat”的 Windows 批处理脚本。它将复杂的编译部署命令浓缩进了一个双击动作里。</p>
-<p>这就为我未来的创作带来了极度舒适、无摩擦的“双闭环”爽快体验：</p>
-<h3 id="写文章闭环（动嘴流）"><a href="#写文章闭环（动嘴流）" class="headerlink" title="写文章闭环（动嘴流）"></a>写文章闭环（动嘴流）</h3><p>日常学习完，我只需要对 AI 协作平台里的 AI 说：“帮我新建一篇文章，标题叫《半导体物理中Kronig-Penney模型的MATLAB数值求解》。”AI 就会在本地自动创建好带有正确作者和日期格式的文件，甚至可以根据我的大白话草稿直接帮我转化成排版精美的正文。</p>
-<h3 id="发布闭网（双击流）"><a href="#发布闭网（双击流）" class="headerlink" title="发布闭网（双击流）"></a>发布闭网（双击流）</h3><p>写文章并保存后，我不需要打开 GitHub，不需要打开终端，只需要回到 <code>F:\blog</code> 文件夹，用鼠标双击运行“快捷发布文章.bat”。黑色的黑客命令行窗口闪烁几秒钟，自动执行清理、打包、推送，5 秒钟后，全球各地的用户刷新 <code>maoxijia.top</code>，就能立刻看到我更新的中文文章。</p>
+<h2 id="二、-准备工作"><a href="#二、-准备工作" class="headerlink" title="二、 准备工作"></a>二、 准备工作</h2><p>开始之前，请确保你已经准备好以下工具和账号：</p>
+<ol>
+<li><strong>GitHub 账号</strong>：用于克隆和托管反代及镜像网站的源码。</li>
+<li><strong>Vercel 账号</strong>：直接使用 GitHub 账号登录即可。</li>
+<li><strong>Cloudflare 账号</strong>：用于接管你的域名 DNS。</li>
+<li><strong>一个顶级域名</strong>：本教程以我自己的 <code>maoxijia.top</code> 为例。</li>
+<li><strong>OpenAI API Key</strong>：既然是搭建反代，你手里需要有一个官方的 API Key（用于测试或填入镜像后台）。</li>
+</ol>
 <hr>
-<h2 id="四、-核心体会与思考"><a href="#四、-核心体会与思考" class="headerlink" title="四、 核心体会与思考"></a>四、 核心体会与思考</h2><p>这次短短 10 分钟的建站经历，给我带来了极大的震撼，也让我对人工智能时代的学习方式与工程思维有了全新的认知：</p>
-<h3 id="1-从“背诵-API”到“逻辑总指挥”的思维转变"><a href="#1-从“背诵-API”到“逻辑总指挥”的思维转变" class="headerlink" title="1. 从“背诵 API”到“逻辑总指挥”的思维转变"></a>1. 从“背诵 API”到“逻辑总指挥”的思维转变</h3><p>在传统建站流程中，我们需要去死记硬背 Hexo 的命令，去一行行翻找配置文件里哪个地方缩进错了一个空格。这对于需要把大量精力放在光学分析、电路推导上的工科学生来说，是一种巨大的精力内耗。<br>而今天，我通过提供清晰的结构边界、功能要求、美学标准，AI Agent 就能直接帮我完成底层繁琐的机械配置。这让我深刻意识到：未来的核心竞争力不再是你记住了多少配置指令，而是你是否具备清晰的、结构化的全局指挥逻辑。</p>
-<h3 id="2-效率大杀器：Gemini-3-5-Flash-的工程实力"><a href="#2-效率大杀器：Gemini-3-5-Flash-的工程实力" class="headerlink" title="2. 效率大杀器：Gemini 3.5 Flash 的工程实力"></a>2. 效率大杀器：Gemini 3.5 Flash 的工程实力</h3><p>过去我们总觉得只有参数量庞大的思考大模型才能做复杂开发。但今天 Gemini 3.5 Flash 的表现让我大开眼界。在面对读写本地文件、执行批量终端命令等重体力工程活时，它的速度极快、不掉链子。配合平台的 Always allow 权限放行，它完全表现出了一个高效率、无怨无悔的数字工程师的恐怖执行力。</p>
-<h3 id="3-安全是极客永远的底线"><a href="#3-安全是极客永远的底线" class="headerlink" title="3. 安全是极客永远的底线"></a>3. 安全是极客永远的底线</h3><p>这次建站中关于 Token 泄露的插曲给我上了一堂生动的网络安全课。密码、凭证、私钥，只要它离开过本地，在网络聊天框中闪现过，无论多么私密，都必须当作已经泄露来处理。学会利用本地 env 环境变量来建立 AI 智能体的安全保护隔离带，是每个进入 AI 自动化领域的开发者必须具备的素养。</p>
+<h2 id="三、-实战演练：api-maoxijia-top（API-反代网站）部署"><a href="#三、-实战演练：api-maoxijia-top（API-反代网站）部署" class="headerlink" title="三、 实战演练：api.maoxijia.top（API 反代网站）部署"></a>三、 实战演练：api.maoxijia.top（API 反代网站）部署</h2><p>我们先来搭建底层骨架——API 反代。它的作用是把官方的 <code>api.openai.com</code> 映射到我们自己的 <code>api.maoxijia.top</code>，让国内的 Python 脚本或各类软件（如 ChatBox、NextChat）能无缝调用。</p>
+<h3 id="步骤-1：获取及配置-Antigravity-代码"><a href="#步骤-1：获取及配置-Antigravity-代码" class="headerlink" title="步骤 1：获取及配置 Antigravity 代码"></a>步骤 1：获取及配置 Antigravity 代码</h3><ol>
+<li>登录你的 GitHub 账号。</li>
+<li>寻找或创建基于 Vercel Edge Functions 的 Antigravity 反代仓库。</li>
+<li>在项目的 <code>index.js</code> 或 <code>api/v1.js</code> 核心路由中，确保其实现了以下逻辑：<ul>
+<li>拦截所有发往 <code>api.maoxijia.top</code> 的请求。</li>
+<li>修改请求头（Headers），剥离可能导致阻断的特征，将 <code>Host</code> 修改为 <code>api.openai.com</code>。</li>
+<li>保持流式传输（Stream&#x2F;SSE），这是 ChatGPT 逐字蹦出效果的关键。</li>
+</ul>
+</li>
+</ol>
+<h3 id="步骤-2：导入-Vercel-并配置环境变量"><a href="#步骤-2：导入-Vercel-并配置环境变量" class="headerlink" title="步骤 2：导入 Vercel 并配置环境变量"></a>步骤 2：导入 Vercel 并配置环境变量</h3><ol>
+<li>打开 <a target="_blank" rel="noopener" href="https://vercel.com/">Vercel 官网</a>，点击 <strong>Add New -&gt; Project</strong>。</li>
+<li>导入你刚刚准备好的 GitHub 反代项目仓库。</li>
+<li>在 <strong>Environment Variables（环境变量）</strong> 中，可以根据项目要求配置关键变量：<ul>
+<li>例如，如果你想做访问权限控制，可以设置 <code>AUTH_SECRET_KEY</code>。</li>
+<li>如果想内置官方 Key，可设置 <code>OPENAI_API_KEY</code>（建议留空，让客户端自行输入）。</li>
+</ul>
+</li>
+<li>点击 <strong>Deploy</strong>。等待大约 30 秒，Vercel 就会为你分配一个以 <code>.vercel.app</code> 结尾的免费默认域名。</li>
+</ol>
 <hr>
-<h2 id="结语：在纯黑的赛博空间，折射光电与-AI-的未来"><a href="#结语：在纯黑的赛博空间，折射光电与-AI-的未来" class="headerlink" title="结语：在纯黑的赛博空间，折射光电与 AI 的未来"></a>结语：在纯黑的赛博空间，折射光电与 AI 的未来</h2><p>至此，“小毛的blog空间”已经正式接入广阔的公网。在这个由纯黑背景、霓虹色彩构成的极简空间里，它不仅是一本精美的数字笔记，更是我用 AI 智能体武装自己、提高生产力的第一个具象化结晶。</p>
-<p>未来，这里将源源不断地产出我在光电信息科学领域的专业建模思考、AI 自动化工具的调教心得，以及每一场硬核的技术总结。光在暗室里才能折射出最绚丽的谱线，而这个纯黑的博客，就是我思维之光最完美的折射介质。</p>
-<p>欢迎来到我的赛博空间。</p>
+<h2 id="四、-实战演练：ai-maoxijia-top（AI-镜像网站）部署"><a href="#四、-实战演练：ai-maoxijia-top（AI-镜像网站）部署" class="headerlink" title="四、 实战演练：ai.maoxijia.top（AI 镜像网站）部署"></a>四、 实战演练：ai.maoxijia.top（AI 镜像网站）部署</h2><p>有了稳定的 API 接口，接下来我们部署前端交互界面。这里我们通常采用市面上成熟的开源项目（如 ChatGPT-Next-Web 或 Lobe-Chat），它们拥有极佳的 UI 体验。</p>
+<h3 id="步骤-1：克隆前端项目"><a href="#步骤-1：克隆前端项目" class="headerlink" title="步骤 1：克隆前端项目"></a>步骤 1：克隆前端项目</h3><p>在 GitHub 上 Fork 优秀的网页端项目到你自己的仓库。</p>
+<h3 id="步骤-2：在-Vercel-中进行二次部署"><a href="#步骤-2：在-Vercel-中进行二次部署" class="headerlink" title="步骤 2：在 Vercel 中进行二次部署"></a>步骤 2：在 Vercel 中进行二次部署</h3><ol>
+<li>同样在 Vercel 中新建项目，选择刚才 Fork 的前端网页仓库。</li>
+<li><strong>至关重要的一步</strong>：在配置环境变量时，找到 <code>BASE_URL</code> 或 <code>OPENAI_PROXY_URL</code>。</li>
+<li><strong>将该变量的值填写为我们刚刚搭建好的反代地址</strong>：<code>https://api.maoxijia.top</code>。<blockquote>
+<p><strong>注意</strong>：绝对不要填官方地址，必须填你自己的反代 API，这样前端网页才能在国内网络下正常向后端发送请求。</p>
+</blockquote>
+</li>
+<li>点击 <strong>Deploy</strong>，完成前端镜像网站的上线。</li>
+</ol>
+<hr>
+<h2 id="五、-关键一环：Cloudflare-域名解析与-Vercel-自定义域名绑定"><a href="#五、-关键一环：Cloudflare-域名解析与-Vercel-自定义域名绑定" class="headerlink" title="五、 关键一环：Cloudflare 域名解析与 Vercel 自定义域名绑定"></a>五、 关键一环：Cloudflare 域名解析与 Vercel 自定义域名绑定</h2><p>目前，Vercel 默认分配的 <code>.vercel.app</code> 域名在国内部分地区遭遇了 DNS 污染，无法直接访问。因此，我们必须绑定自己的顶级域名 <code>maoxijia.top</code>，并通过 Cloudflare 进行中转加速。</p>
+<h3 id="1-将域名解析权移交给-Cloudflare"><a href="#1-将域名解析权移交给-Cloudflare" class="headerlink" title="1. 将域名解析权移交给 Cloudflare"></a>1. 将域名解析权移交给 Cloudflare</h3><ol>
+<li>登录你的域名注册商后台（如阿里云、腾讯云或 Namecheap）。</li>
+<li>将修改 DNS 服务器（Name Servers）为 Cloudflare 提供的地址（例如：<code>alex.ns.cloudflare.com</code> 和 <code>mira.ns.cloudflare.com</code>）。</li>
+<li>等待 DNS 生效。</li>
+</ol>
+<h3 id="2-在-Vercel-中绑定自定义域名"><a href="#2-在-Vercel-中绑定自定义域名" class="headerlink" title="2. 在 Vercel 中绑定自定义域名"></a>2. 在 Vercel 中绑定自定义域名</h3><ol>
+<li>进入 Vercel 中 API 反代的项目后台，点击 <strong>Settings -&gt; Domains</strong>。</li>
+<li>输入 <code>api.maoxijia.top</code>，点击 Add。此时 Vercel 会提示你一条 <code>CNAME</code> 记录或 <code>A</code> 记录的信息。</li>
+<li>同样的方式，进入前端镜像网站的项目后台，在 Domains 中添加 <code>ai.maoxijia.top</code>。</li>
+</ol>
+<h3 id="3-在-Cloudflare-中配置-DNS-记录"><a href="#3-在-Cloudflare-中配置-DNS-记录" class="headerlink" title="3. 在 Cloudflare 中配置 DNS 记录"></a>3. 在 Cloudflare 中配置 DNS 记录</h3><p>回到 Cloudflare 控制台，进入 <code>maoxijia.top</code> 的管理页面，添加以下两条关键解析：</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型 (Type)</th>
+<th align="left">名称 (Name)</th>
+<th align="left">目标地址 (Content)</th>
+<th align="left">代理状态 (Proxy status)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>CNAME</strong></td>
+<td align="left"><code>api</code></td>
+<td align="left"><code>cname.vercel-dns.com</code></td>
+<td align="left"><strong>已开启 (Proxied 黄色小云朵)</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>CNAME</strong></td>
+<td align="left"><code>ai</code></td>
+<td align="left"><code>cname.vercel-dns.com</code></td>
+<td align="left"><strong>已开启 (Proxied 黄色小云朵)</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>独家避坑指南：</strong><br>很多人在这里会遇到“重定向次数过多（Too many redirects）”的错误。这是因为 Cloudflare 与 Vercel 之间的 SSL 握手协议冲突导致。<br><strong>解决方案：</strong> 在 Cloudflare 的左侧菜单中点击 <strong>SSL&#x2F;TLS</strong>，将加密模式从默认的“灵活 (Flexible)”修改为 <strong>“完全 (Full)”</strong> 或 <strong>“严格 (Strict)”</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="六、-性能优化与安全性加固"><a href="#六、-性能优化与安全性加固" class="headerlink" title="六、 性能优化与安全性加固"></a>六、 性能优化与安全性加固</h2><p>到这一步，你的网站应该已经可以顺利打开了。但作为一个合格的站点所有者，我们还需要利用 Cloudflare 的强大功能对网站进行调优。</p>
+<h3 id="1-开启-Web-缓存与边缘加速"><a href="#1-开启-Web-缓存与边缘加速" class="headerlink" title="1. 开启 Web 缓存与边缘加速"></a>1. 开启 Web 缓存与边缘加速</h3><p>由于 AI 镜像站的许多前端资源（JavaScript、CSS、字体文件）是固定不变的，我们可以在 Cloudflare 的 <strong>Caching (缓存)</strong> 选项中，将浏览器缓存过期时间设置为 1天以上。这样，当国内用户访问 <code>ai.maoxijia.top</code> 时，静态资源会直接从就近的 Cloudflare 国内周边边缘节点（如香港、东京、新加坡）加载，实现毫秒级开屏。</p>
+<h3 id="2-配置-WAF-防护墙，防止-API-被盗刷"><a href="#2-配置-WAF-防护墙，防止-API-被盗刷" class="headerlink" title="2. 配置 WAF 防护墙，防止 API 被盗刷"></a>2. 配置 WAF 防护墙，防止 API 被盗刷</h3><p>API 额度就是真金白银。为了防止恶意爬虫或者别人直接抓取你的 <code>api.maoxijia.top</code> 进行滥用，建议在 Cloudflare 的 <strong>Security -&gt; WAF (Web 应用程序防火墙)</strong> 中建立一条规则：</p>
+<ul>
+<li><strong>速率限制 (Rate Limiting)</strong>：限制单个 IP 每分钟的请求次数（例如：每分钟最多 60 次请求）。超过该频率则封禁该 IP 一小时。</li>
+<li><strong>挑战机制</strong>：对非正常浏览器特征的请求，强制弹出 Cloudflare Turnstile 验证码，拦截自动化刷量脚本。</li>
+</ul>
+<hr>
+<h2 id="七、-总结与展望"><a href="#七、-总结与展望" class="headerlink" title="七、 总结与展望"></a>七、 总结与展望</h2><p>通过今天的一番折腾，我们用极其优雅的姿势完成了 <code>ai.maoxijia.top</code> 和 <code>api.maoxijia.top</code> 的协同部署。回看整个方案：</p>
+<ul>
+<li><strong>零成本</strong>：服务器托管在 Vercel，网络安全交给 Cloudflare，我们除了域名续费，没有掏一分钱。</li>
+<li><strong>高可用</strong>：得益于 Antigravity 的优秀底层和 Vercel Edge Functions 的分布式特性，即便单点出现波动，也能自动漂移恢复。</li>
+<li><strong>双向赋能</strong>：镜像站方便了身边没有技术背景的朋友直接使用 AI；反代站则解放了我们自己的开发环境，随时随地一行代码调用大模型。</li>
+</ul>
+<p>未来，我计划在这套架构的基础上，进一步引入 <strong>Cloudflare Workers KV</strong> 来做全自动的 API Key 轮询与额度监控，甚至加入用户登录注册系统，将其打造成一个小型微型的 SaaS 平台。</p>
+<p>如果你在跟随本文搭建的过程中遇到了任何阻碍，比如 Vercel 报错、Cloudflare 证书不匹配等问题，欢迎在评论区留言交流，我们一起避坑！</p>
+<hr>
+<h3 id="🎯-站点速递"><a href="#🎯-站点速递" class="headerlink" title="🎯 站点速递"></a>🎯 站点速递</h3><ul>
+<li><strong>Web 交互端：</strong> <a target="_blank" rel="noopener" href="https://ai.maoxijia.top/">https://ai.maoxijia.top</a></li>
+<li><strong>API 接入点：</strong> <code>https://api.maoxijia.top</code></li>
+</ul>
+<p><em>版权声明：本文为博主原创文章，转载请注明出处。</em></p>
 
                 
               </div>
@@ -491,9 +572,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" class="print-no-link">#学习心得</a>
-      
         <a href="/tags/AI%E5%B7%A5%E5%85%B7/" class="print-no-link">#AI工具</a>
+      
+        <a href="/tags/%E9%95%9C%E5%83%8F/" class="print-no-link">#镜像</a>
+      
+        <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" class="print-no-link">#反向代理</a>
       
     </div>
   
@@ -505,8 +588,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考</div>
-      <div>https://blog.maoxijia.top/2026/05/22/基于-AI-Agent-闭环驱动的全自动黑科技博客建站实战与光电美学思考/</div>
+      <div>零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录</div>
+      <div>https://blog.maoxijia.top/2026/05/23/零成本拥抱-AI：基于-Vercel-+-Cloudflare-极速搭建-GPT-镜像与-API-反代全记录/</div>
     </div>
     <div class="license-meta">
       
@@ -518,7 +601,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年5月22日</div>
+          <div>2026年5月23日</div>
         </div>
       
       
@@ -550,15 +633,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/05/23/%E9%9B%B6%E6%88%90%E6%9C%AC%E6%8B%A5%E6%8A%B1-AI%EF%BC%9A%E5%9F%BA%E4%BA%8E-Vercel-+-Cloudflare-%E6%9E%81%E9%80%9F%E6%90%AD%E5%BB%BA-GPT-%E9%95%9C%E5%83%8F%E4%B8%8E-API-%E5%8F%8D%E4%BB%A3%E5%85%A8%E8%AE%B0%E5%BD%95/" title="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录">
+                      <a href="/2026/05/25/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/" title="傅里叶变换的通俗理解">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录</span>
+                        <span class="hidden-mobile">傅里叶变换的通俗理解</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2026/05/22/%E5%9F%BA%E4%BA%8E-AI-Agent-%E9%97%AD%E7%8E%AF%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%85%A8%E8%87%AA%E5%8A%A8%E9%BB%91%E7%A7%91%E6%8A%80%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99%E5%AE%9E%E6%88%98%E4%B8%8E%E5%85%89%E7%94%B5%E7%BE%8E%E5%AD%A6%E6%80%9D%E8%80%83/" title="基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考">
+                        <span class="hidden-mobile">基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

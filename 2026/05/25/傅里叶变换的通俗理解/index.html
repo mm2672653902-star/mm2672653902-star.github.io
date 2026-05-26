@@ -19,25 +19,25 @@
   <meta name="author" content="Mao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="当光电信息科学的严谨与 AI 智能体的闭环执行力发生碰撞，会产生怎样的火花？本文记录了一场通过纯口头指令驱动本地 Agent、在 10 分钟内全自动搭建并部署专属技术博客的实战经历，并分享关于光电美学与 AI 安全边界的深层思考。  引言：当光电美学遇见 AI 智能体在光电信息科学与工程的学习中，我们无数次与“光”打交道——从 Zemax 中红蓝交织的双胶合透镜消色差光路，到半导体物理中严密的能">
+    <meta name="description" content="穿越时空的数学棱镜：深入浅出傅里叶变换（Fourier Transform）引言：音乐、棱镜与数学想象一下，你正坐在一个宏大的交响乐团前。琴声、笛声、鼓声交织在一起，汇聚成一股极其复杂的声波传入你的耳朵。你的大脑极其神奇，它能够瞬间分辨出：“啊，这是小提琴的独奏，那是长笛的伴奏。” 在物理上，传入你耳朵的只有一组随时间剧烈波动的气压信号（时域信号）。但你的大脑却成功地将它拆解成了不同的乐器、不同的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考">
-<meta property="og:url" content="https://blog.maoxijia.top/2026/05/22/%E5%9F%BA%E4%BA%8E-AI-Agent-%E9%97%AD%E7%8E%AF%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%85%A8%E8%87%AA%E5%8A%A8%E9%BB%91%E7%A7%91%E6%8A%80%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99%E5%AE%9E%E6%88%98%E4%B8%8E%E5%85%89%E7%94%B5%E7%BE%8E%E5%AD%A6%E6%80%9D%E8%80%83/index.html">
+<meta property="og:title" content="傅里叶变换的通俗理解">
+<meta property="og:url" content="https://blog.maoxijia.top/2026/05/25/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="小毛的blog空间">
-<meta property="og:description" content="当光电信息科学的严谨与 AI 智能体的闭环执行力发生碰撞，会产生怎样的火花？本文记录了一场通过纯口头指令驱动本地 Agent、在 10 分钟内全自动搭建并部署专属技术博客的实战经历，并分享关于光电美学与 AI 安全边界的深层思考。  引言：当光电美学遇见 AI 智能体在光电信息科学与工程的学习中，我们无数次与“光”打交道——从 Zemax 中红蓝交织的双胶合透镜消色差光路，到半导体物理中严密的能">
+<meta property="og:description" content="穿越时空的数学棱镜：深入浅出傅里叶变换（Fourier Transform）引言：音乐、棱镜与数学想象一下，你正坐在一个宏大的交响乐团前。琴声、笛声、鼓声交织在一起，汇聚成一股极其复杂的声波传入你的耳朵。你的大脑极其神奇，它能够瞬间分辨出：“啊，这是小提琴的独奏，那是长笛的伴奏。” 在物理上，传入你耳朵的只有一组随时间剧烈波动的气压信号（时域信号）。但你的大脑却成功地将它拆解成了不同的乐器、不同的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-05-22T14:22:53.000Z">
-<meta property="article:modified_time" content="2026-05-23T05:33:34.075Z">
+<meta property="article:published_time" content="2026-05-25T05:39:54.000Z">
+<meta property="article:modified_time" content="2026-05-25T14:10:54.315Z">
 <meta property="article:author" content="Mao">
-<meta property="article:tag" content="AI工具">
 <meta property="article:tag" content="学习心得">
+<meta property="article:tag" content="学习总结">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考 - 小毛的blog空间</title>
+  <title>傅里叶变换的通俗理解 - 小毛的blog空间</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -338,7 +338,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考"></span>
+            <span id="subtitle" data-typed-text="傅里叶变换的通俗理解"></span>
           
         </div>
 
@@ -349,8 +349,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-05-22 22:22" pubdate>
-          2026年5月22日 晚上
+        <time datetime="2026-05-25 13:39" pubdate>
+          2026年5月25日 下午
         </time>
       </span>
     
@@ -361,7 +361,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          2.1k 字
         
       </span>
     
@@ -372,7 +372,7 @@
         
         
         
-          29 分钟
+          18 分钟
         
       </span>
     
@@ -411,53 +411,64 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考</h1>
+            <h1 id="seo-header">傅里叶变换的通俗理解</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>当光电信息科学的严谨与 AI 智能体的闭环执行力发生碰撞，会产生怎样的火花？本文记录了一场通过纯口头指令驱动本地 Agent、在 10 分钟内全自动搭建并部署专属技术博客的实战经历，并分享关于光电美学与 AI 安全边界的深层思考。</p>
-</blockquote>
-<h2 id="引言：当光电美学遇见-AI-智能体"><a href="#引言：当光电美学遇见-AI-智能体" class="headerlink" title="引言：当光电美学遇见 AI 智能体"></a>引言：当光电美学遇见 AI 智能体</h2><p>在光电信息科学与工程的学习中，我们无数次与“光”打交道——从 Zemax 中红蓝交织的双胶合透镜消色差光路，到半导体物理中严密的能带结构。光电的世界是严谨、纯粹且极具未来感的。作为一名科技探索者，我一直渴望拥有一个属于自己的精神根据地，一个能够记录自己在光学设计、电路分析以及 AI 自动化工具研究中点滴心得的赛博空间。</p>
-<p>我不希望这个空间是平庸的。它必须足够硬核：纯黑的夜空底色、霓虹般的线条、简约的架构，最重要的是，它的搭建与日常维护必须符合极客的逻辑——全自动化。</p>
-<p>2026 年 5 月 22 日夜晚，我利用本地 AI 智能体终端协作平台，配合搭载的 Gemini 3.5 Flash 模型，在不给 AI 云端暴露核心隐私的前提下，通过纯大白话命令指挥，在短短 10 分钟内，打通了本地环境、GitHub Pages 远程仓库与 Cloudflare 全球 CDN 网络，从零拔地而起了一座完全属于我自己的技术博客：“小毛的blog空间”（maoxijia.top）。</p>
-<p>本文将深度还原这一场“动嘴流”的黑客建站实战，并分享我在 AI 自动化和信息安全边界上的全新体会。</p>
+                <h1 id="穿越时空的数学棱镜：深入浅出傅里叶变换（Fourier-Transform）"><a href="#穿越时空的数学棱镜：深入浅出傅里叶变换（Fourier-Transform）" class="headerlink" title="穿越时空的数学棱镜：深入浅出傅里叶变换（Fourier Transform）"></a>穿越时空的数学棱镜：深入浅出傅里叶变换（Fourier Transform）</h1><h2 id="引言：音乐、棱镜与数学"><a href="#引言：音乐、棱镜与数学" class="headerlink" title="引言：音乐、棱镜与数学"></a>引言：音乐、棱镜与数学</h2><p>想象一下，你正坐在一个宏大的交响乐团前。琴声、笛声、鼓声交织在一起，汇聚成一股极其复杂的声波传入你的耳朵。你的大脑极其神奇，它能够瞬间分辨出：“啊，这是小提琴的独奏，那是长笛的伴奏。”</p>
+<p>在物理上，传入你耳朵的只有一组随时间剧烈波动的气压信号（时域信号）。但你的大脑却成功地将它拆解成了不同的乐器、不同的音高（频域信号）。</p>
+<p>数学上，有没有一种“棱镜”，能够像将白光分解为七彩虹光一样，把一个复杂的信号分解成无数纯净的正弦波？</p>
+<p>答案就是——<strong>傅里叶变换（Fourier Transform）</strong>。</p>
 <hr>
-<h2 id="一、-顶层架构设计：安全、速度与美学的平衡"><a href="#一、-顶层架构设计：安全、速度与美学的平衡" class="headerlink" title="一、 顶层架构设计：安全、速度与美学的平衡"></a>一、 顶层架构设计：安全、速度与美学的平衡</h2><p>在敲下第一行指令前，我对博客的整个拓扑结构进行了理性的工程规划。一个成熟的个人静态博客，必须解决三个核心痛点：安全性、访问速度（免翻墙）和日常发布的零摩擦力。</p>
-<h3 id="防御性工程：本地保险箱原则"><a href="#防御性工程：本地保险箱原则" class="headerlink" title="防御性工程：本地保险箱原则"></a>防御性工程：本地保险箱原则</h3><p>很多初学者在调用 AI 自动部署时，会图省事直接把 GitHub Token（个人访问令牌）贴进 AI 的对话框里。这在网络安全中是极度危险的。AI 运行在云端，任何敏感钥匙在网络链路上的闪现，都有可能被拦截、缓存或触发平台自身的安全吊销机制。</p>
-<p>我的方案是“本地保险箱原则”：在本地文件夹建立 <code>env.txt</code>，将钥匙留在本地硬盘上。利用智能体的本地执行权，让 AI 自己去本地保险箱拿钥匙，全程不经过云端网络传输。</p>
-<h3 id="网络拓扑：GitHub-托管-Cloudflare-边缘加速"><a href="#网络拓扑：GitHub-托管-Cloudflare-边缘加速" class="headerlink" title="网络拓扑：GitHub 托管 + Cloudflare 边缘加速"></a>网络拓扑：GitHub 托管 + Cloudflare 边缘加速</h3><ul>
-<li><strong>代码托管</strong>：利用 GitHub Pages，免去了维护传统 VPS 服务器的繁琐，实现零成本、高稳定的代码托管。</li>
-<li><strong>全球加速（免翻墙）</strong>：直接连 GitHub Pages 在国内往往会被墙或严重卡顿。通过在 Cloudflare 中配置 CNAME 记录，并开启 Proxied（代理状态），让 Cloudflare 的全球边缘节点作为国内用户的流量入口。利用 CF 的 CNAME Flattening（展平技术），用户访问顶级域名 <code>maoxijia.top</code> 时将由 CF 全球 CDN 直接秒级响应吐出静态网页，完美实现国内免翻墙秒开。</li>
-</ul>
-<h3 id="视觉与功能：纯黑极简与全局搜索"><a href="#视觉与功能：纯黑极简与全局搜索" class="headerlink" title="视觉与功能：纯黑极简与全局搜索"></a>视觉与功能：纯黑极简与全局搜索</h3><p>采用 Hexo 阵营中极具现代科技感的 Hexo-theme-Fluid 主题，强制锁定纯黑（<code>#000000</code>）背景与深黑（<code>#080808</code>）卡片，辅以霓虹蓝（<code>#00e5ff</code>）与荧光绿（<code>#64ffda</code>）的流线特效，将光电实验室的“暗室极客感”搬上网页。同时，集成本地搜索插件，确保未来大规模海量笔记的快速索引。</p>
-<hr>
-<h2 id="二、-自动化建站实战：Gemini-3-5-Flash-闭环执行"><a href="#二、-自动化建站实战：Gemini-3-5-Flash-闭环执行" class="headerlink" title="二、 自动化建站实战：Gemini 3.5 Flash 闭环执行"></a>二、 自动化建站实战：Gemini 3.5 Flash 闭环执行</h2><p>配置好 Cloudflare 的 CNAME 解析后，剩下的所有脏活、累活、配置活，我都交给了 Gemini 3.5 Flash。不得不说，作为速度与效率的担当，智能体在本地沙箱中展现出了极其恐怖的执行力。</p>
-<h3 id="Step-1-环境探测与-Hexo-初始化"><a href="#Step-1-环境探测与-Hexo-初始化" class="headerlink" title="Step 1: 环境探测与 Hexo 初始化"></a>Step 1: 环境探测与 Hexo 初始化</h3><p>向智能体发布总指挥指令后，Gemini 3.5 Flash 闪电般读取了本地 <code>env.txt</code>。它在后台调用 Powershell，自动检测我电脑里的 Node.js 环境与 Git 环境。<br>在确认依赖完备后，它静默执行了 <code>npx hexo init</code> 命令。这个命令需要去国外服务器拉取 Hexo 博客的底层脚手架。在长达两三分钟的后台静默下载期，智能体表现得非常稳健，成功将整套博客源码生成在我的 <code>F:\blog</code> 目录中。</p>
-<h3 id="Step-2-主题克隆与暗黑皮肤微调"><a href="#Step-2-主题克隆与暗黑皮肤微调" class="headerlink" title="Step 2: 主题克隆与暗黑皮肤微调"></a>Step 2: 主题克隆与暗黑皮肤微调</h3><p>基础框架搭建完毕后，智能体自动通过 Git 将 <code>hexo-theme-fluid</code> 下载到本地。随后，它发挥了毫秒级的文件读写优势，直接切入核心配置文件，执行了以下定向手术：</p>
+<h2 id="一、核心视角：时域与频域"><a href="#一、核心视角：时域与频域" class="headerlink" title="一、核心视角：时域与频域"></a>一、核心视角：时域与频域</h2><p>要理解傅里叶变换，首先要改变你看世界的方式。</p>
 <ul>
-<li>将博客名称硬编码修改为：<code>小毛的blog空间</code>。</li>
-<li>将站点默认语言强制切换为：<code>zh-CN</code>（简体中文）。</li>
-<li>修改 <code>custom.css</code>，注入纯黑与霓虹色彩的微光特效。</li>
-<li>定制自定义新建文章模版，将作者固定为 <code>Xijia Mao</code>，并默认挂载 <code>[光电信息, AI工具, 学习心得]</code> 的元数据标签。</li>
+<li><strong>时域（Time Domain）</strong>：这是我们最习惯的视角。我们观察一个量（如声音、电压、股票价格）如何随着<strong>时间</strong>的推移而变化。</li>
+<li><strong>频域（Frequency Domain）</strong>：这是一种静态的、永恒的视角。它不看事件何时发生，而是看在这个信号中，各种<strong>频率</strong>的成分各占多少比例。</li>
 </ul>
-<h3 id="Step-3-Git-凭证打通与首次发布"><a href="#Step-3-Git-凭证打通与首次发布" class="headerlink" title="Step 3: Git 凭证打通与首次发布"></a>Step 3: Git 凭证打通与首次发布</h3><p>在执行最后的发布命令时，本地 Git 触发了 Windows 系统的凭证管理器弹窗。为了彻底消灭未来的手动干预，我选择切换到 Token 验证模式，将干净的新 GitHub Token 贴入弹窗。系统在底层记住这把钥匙后，智能体一气呵成地完成了首次网页打包编译，并将静态网页资源顺利推送到 GitHub Page 仓库中。</p>
-<p>整个过程，除了在权限申请时我点击了 <em>Yes, and always allow</em>（总是允许）以及一次 Token 粘贴外，我没有手动敲击任何一行代码，没有翻阅任何配置文档，网站便全自动落成！</p>
+<p>傅里叶变换的本质，就是<strong>在这两个完全等价但视角迥异的“平行世界”之间架起的一座桥梁</strong>。</p>
 <hr>
-<h2 id="三、-极客体验：一键批处理与写文章的零摩擦力"><a href="#三、-极客体验：一键批处理与写文章的零摩擦力" class="headerlink" title="三、 极客体验：一键批处理与写文章的零摩擦力"></a>三、 极客体验：一键批处理与写文章的零摩擦力</h2><p>为了实现“快捷发布”，智能体非常贴心地在我的博客根目录下生成了一个名为“快捷发布文章.bat”的 Windows 批处理脚本。它将复杂的编译部署命令浓缩进了一个双击动作里。</p>
-<p>这就为我未来的创作带来了极度舒适、无摩擦的“双闭环”爽快体验：</p>
-<h3 id="写文章闭环（动嘴流）"><a href="#写文章闭环（动嘴流）" class="headerlink" title="写文章闭环（动嘴流）"></a>写文章闭环（动嘴流）</h3><p>日常学习完，我只需要对 AI 协作平台里的 AI 说：“帮我新建一篇文章，标题叫《半导体物理中Kronig-Penney模型的MATLAB数值求解》。”AI 就会在本地自动创建好带有正确作者和日期格式的文件，甚至可以根据我的大白话草稿直接帮我转化成排版精美的正文。</p>
-<h3 id="发布闭网（双击流）"><a href="#发布闭网（双击流）" class="headerlink" title="发布闭网（双击流）"></a>发布闭网（双击流）</h3><p>写文章并保存后，我不需要打开 GitHub，不需要打开终端，只需要回到 <code>F:\blog</code> 文件夹，用鼠标双击运行“快捷发布文章.bat”。黑色的黑客命令行窗口闪烁几秒钟，自动执行清理、打包、推送，5 秒钟后，全球各地的用户刷新 <code>maoxijia.top</code>，就能立刻看到我更新的中文文章。</p>
+<h2 id="二、数学基石与核心公式"><a href="#二、数学基石与核心公式" class="headerlink" title="二、数学基石与核心公式"></a>二、数学基石与核心公式</h2><h3 id="1-欧拉公式：旋转的纽带"><a href="#1-欧拉公式：旋转的纽带" class="headerlink" title="1. 欧拉公式：旋转的纽带"></a>1. 欧拉公式：旋转的纽带</h3><p>傅里叶变换之所以能用极其优雅的形式表达，离不开数学史上最美的公式之一——<strong>欧拉公式</strong>：</p>
+<p>$$e^{ix} &#x3D; \cos x + i \sin x$$</p>
+<p>如果我们把 $x$ 替换为 $\omega t$，即 $e^{i\omega t}$，在复平面上它代表一个<strong>随着时间 $t$ 以角速度 $\omega$ 逆时针旋转的单位圆</strong>。通过复指数，我们把正弦波和余弦波完美地统一在了一起。</p>
+<h3 id="2-连续傅里叶变换（FT）"><a href="#2-连续傅里叶变换（FT）" class="headerlink" title="2. 连续傅里叶变换（FT）"></a>2. 连续傅里叶变换（FT）</h3><p>对于一个连续的非周期时域信号 $f(t)$，其傅里叶变换定义为：</p>
+<p>$$F(\omega) &#x3D; \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt$$</p>
+<h4 id="怎么直观理解这个公式？"><a href="#怎么直观理解这个公式？" class="headerlink" title="怎么直观理解这个公式？"></a>怎么直观理解这个公式？</h4><ul>
+<li>$f(t)$ 是原始的时域信号。</li>
+<li>$e^{-i\omega t}$ 代表一个以角速度 $\omega$ <strong>顺时针旋转</strong>的螺旋线。</li>
+<li>将它们相乘并积分，本质上是在做<strong>内积（相关性分析）</strong>。</li>
+<li><strong>物理直觉</strong>：当原始信号 $f(t)$ 中包含频率为 $\omega$ 的成分时，它与 $e^{-i\omega t}$ 的旋转会“同步”（共振），积分结果 $F(\omega)$ 就会产生一个很大的值。反之，如果没有这个频率，两者就会相互抵消，积分结果接近于 0。</li>
+</ul>
+<h3 id="3-逆傅里叶变换（IFT）"><a href="#3-逆傅里叶变换（IFT）" class="headerlink" title="3. 逆傅里叶变换（IFT）"></a>3. 逆傅里叶变换（IFT）</h3><p>既然能把时域拆解为频域，自然也能把频域重新组装回时域：</p>
+<p>$$f(t) &#x3D; \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{i\omega t} d\omega$$</p>
+<p>这意味着，任何复杂的信号 $f(t)$，都可以看作是无数个权重为 $F(\omega)$、频率为 $\omega$ 的复指数波的<strong>叠加</strong>。</p>
 <hr>
-<h2 id="四、-核心体会与思考"><a href="#四、-核心体会与思考" class="headerlink" title="四、 核心体会与思考"></a>四、 核心体会与思考</h2><p>这次短短 10 分钟的建站经历，给我带来了极大的震撼，也让我对人工智能时代的学习方式与工程思维有了全新的认知：</p>
-<h3 id="1-从“背诵-API”到“逻辑总指挥”的思维转变"><a href="#1-从“背诵-API”到“逻辑总指挥”的思维转变" class="headerlink" title="1. 从“背诵 API”到“逻辑总指挥”的思维转变"></a>1. 从“背诵 API”到“逻辑总指挥”的思维转变</h3><p>在传统建站流程中，我们需要去死记硬背 Hexo 的命令，去一行行翻找配置文件里哪个地方缩进错了一个空格。这对于需要把大量精力放在光学分析、电路推导上的工科学生来说，是一种巨大的精力内耗。<br>而今天，我通过提供清晰的结构边界、功能要求、美学标准，AI Agent 就能直接帮我完成底层繁琐的机械配置。这让我深刻意识到：未来的核心竞争力不再是你记住了多少配置指令，而是你是否具备清晰的、结构化的全局指挥逻辑。</p>
-<h3 id="2-效率大杀器：Gemini-3-5-Flash-的工程实力"><a href="#2-效率大杀器：Gemini-3-5-Flash-的工程实力" class="headerlink" title="2. 效率大杀器：Gemini 3.5 Flash 的工程实力"></a>2. 效率大杀器：Gemini 3.5 Flash 的工程实力</h3><p>过去我们总觉得只有参数量庞大的思考大模型才能做复杂开发。但今天 Gemini 3.5 Flash 的表现让我大开眼界。在面对读写本地文件、执行批量终端命令等重体力工程活时，它的速度极快、不掉链子。配合平台的 Always allow 权限放行，它完全表现出了一个高效率、无怨无悔的数字工程师的恐怖执行力。</p>
-<h3 id="3-安全是极客永远的底线"><a href="#3-安全是极客永远的底线" class="headerlink" title="3. 安全是极客永远的底线"></a>3. 安全是极客永远的底线</h3><p>这次建站中关于 Token 泄露的插曲给我上了一堂生动的网络安全课。密码、凭证、私钥，只要它离开过本地，在网络聊天框中闪现过，无论多么私密，都必须当作已经泄露来处理。学会利用本地 env 环境变量来建立 AI 智能体的安全保护隔离带，是每个进入 AI 自动化领域的开发者必须具备的素养。</p>
+<h2 id="三、从连续到离散：计算机的语言（DFT-FFT）"><a href="#三、从连续到离散：计算机的语言（DFT-FFT）" class="headerlink" title="三、从连续到离散：计算机的语言（DFT &amp; FFT）"></a>三、从连续到离散：计算机的语言（DFT &amp; FFT）</h2><p>在数学演练中，我们使用连续积分。但在现实世界中，计算机只能处理离散的数据点（如 MP3 音频采样、数字照片像素）。</p>
+<h3 id="1-离散傅里叶变换（DFT）"><a href="#1-离散傅里叶变换（DFT）" class="headerlink" title="1. 离散傅里叶变换（DFT）"></a>1. 离散傅里叶变换（DFT）</h3><p>假设我们对信号进行了 $N$ 点采样，得到序列 $x_n$（$n &#x3D; 0, 1, \dots, N-1$），其 DFT 公式为：</p>
+<p>$$X_k &#x3D; \sum_{n&#x3D;0}^{N-1} x_n e^{-i \frac{2\pi}{N} kn}$$</p>
+<p>其中：</p>
+<ul>
+<li>$x_n$ 是时域的采样点。</li>
+<li>$X_k$ 是频域第 $k$ 个频率点的幅度和相位。</li>
+</ul>
+<h3 id="2-快速傅里叶变换（FFT）：改变世界的算法"><a href="#2-快速傅里叶变换（FFT）：改变世界的算法" class="headerlink" title="2. 快速傅里叶变换（FFT）：改变世界的算法"></a>2. 快速傅里叶变换（FFT）：改变世界的算法</h3><p>直接计算 DFT 的复杂度是 $\mathcal{O}(N^2)$。当 $N$ 很大时，计算极其缓慢。</p>
+<p>1965 年，库利（Cooley）和图基（Tukey）提出了<strong>快速傅里叶变换（FFT）</strong>。它利用单位复根的周期性和对称性（分治法），将计算复杂度直接降到了：</p>
+<p>$$\mathcal{O}(N \log N)$$</p>
+<p>正是由于 FFT 的出现，使得实时数字信号处理（DSP）成为可能，也奠定了现代通信和多媒体技术的基石。</p>
 <hr>
-<h2 id="结语：在纯黑的赛博空间，折射光电与-AI-的未来"><a href="#结语：在纯黑的赛博空间，折射光电与-AI-的未来" class="headerlink" title="结语：在纯黑的赛博空间，折射光电与 AI 的未来"></a>结语：在纯黑的赛博空间，折射光电与 AI 的未来</h2><p>至此，“小毛的blog空间”已经正式接入广阔的公网。在这个由纯黑背景、霓虹色彩构成的极简空间里，它不仅是一本精美的数字笔记，更是我用 AI 智能体武装自己、提高生产力的第一个具象化结晶。</p>
-<p>未来，这里将源源不断地产出我在光电信息科学领域的专业建模思考、AI 自动化工具的调教心得，以及每一场硬核的技术总结。光在暗室里才能折射出最绚丽的谱线，而这个纯黑的博客，就是我思维之光最完美的折射介质。</p>
-<p>欢迎来到我的赛博空间。</p>
+<h2 id="四、傅里叶变换在身边的神奇应用"><a href="#四、傅里叶变换在身边的神奇应用" class="headerlink" title="四、傅里叶变换在身边的神奇应用"></a>四、傅里叶变换在身边的神奇应用</h2><p>傅里叶变换绝不仅仅是教科书上的公式，它无处不在：</p>
+<ol>
+<li><p><strong>音频压缩（MP3）</strong>：<br>人类的耳朵对高频声音不敏感。通过傅里叶变换将音频转为频域后，我们可以直接<strong>删掉那些高频且振幅微弱的成分</strong>，从而将音频文件体积压缩十几倍，而听觉效果几乎无损。</p>
+</li>
+<li><p><strong>图像压缩（JPEG）</strong>：<br>图像也可以做傅里叶变换（二维傅里叶变换）。图像的边缘和细节对应高频，大片平坦的区域对应低频。JPEG 压缩正是通过保留低频、过滤高频来实现的。</p>
+</li>
+<li><p><strong>主动降噪耳机</strong>：<br>耳机上的麦克风实时收集外界噪音（时域），通过芯片进行快速傅里叶分析，算出噪音的频率和相位，然后产生一个<strong>相位相反、频率相同</strong>的声波，在耳道内与噪音精准抵消。</p>
+</li>
+<li><p><strong>量子力学（不确定性原理）</strong>：<br>在量子力学中，粒子的位置波函数和动量波函数恰好是一对傅里叶变换对。由于傅里叶变换的时频局域化限制（时域越窄，频域越宽），导致了<strong>位置和动量无法同时被精准测量</strong>的物理本质。</p>
+</li>
+</ol>
+<hr>
+<h2 id="五、结语"><a href="#五、结语" class="headerlink" title="五、结语"></a>五、结语</h2><p>傅里叶变换的伟大之处，在于它揭示了自然界的一种深层对称性。它告诉我们：<strong>复杂与简单，取决于你看待它的视角。</strong> 在时域看似乱作一团、无迹可寻的无序信号，切到频域后，可能只是几根清爽、规整的谱线。</p>
 
                 
               </div>
@@ -476,7 +487,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/" class="category-chain-item">技术总结</a>
+  <a href="/categories/%E7%89%A9%E7%90%86%E6%95%B0%E5%AD%A6/" class="category-chain-item">物理数学</a>
   
   
 
@@ -493,7 +504,7 @@
       
         <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" class="print-no-link">#学习心得</a>
       
-        <a href="/tags/AI%E5%B7%A5%E5%85%B7/" class="print-no-link">#AI工具</a>
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="print-no-link">#学习总结</a>
       
     </div>
   
@@ -505,8 +516,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考</div>
-      <div>https://blog.maoxijia.top/2026/05/22/基于-AI-Agent-闭环驱动的全自动黑科技博客建站实战与光电美学思考/</div>
+      <div>傅里叶变换的通俗理解</div>
+      <div>https://blog.maoxijia.top/2026/05/25/傅里叶变换的通俗理解/</div>
     </div>
     <div class="license-meta">
       
@@ -518,7 +529,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年5月22日</div>
+          <div>2026年5月25日</div>
         </div>
       
       
@@ -550,15 +561,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/05/23/%E9%9B%B6%E6%88%90%E6%9C%AC%E6%8B%A5%E6%8A%B1-AI%EF%BC%9A%E5%9F%BA%E4%BA%8E-Vercel-+-Cloudflare-%E6%9E%81%E9%80%9F%E6%90%AD%E5%BB%BA-GPT-%E9%95%9C%E5%83%8F%E4%B8%8E-API-%E5%8F%8D%E4%BB%A3%E5%85%A8%E8%AE%B0%E5%BD%95/" title="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2026/05/23/%E9%9B%B6%E6%88%90%E6%9C%AC%E6%8B%A5%E6%8A%B1-AI%EF%BC%9A%E5%9F%BA%E4%BA%8E-Vercel-+-Cloudflare-%E6%9E%81%E9%80%9F%E6%90%AD%E5%BB%BA-GPT-%E9%95%9C%E5%83%8F%E4%B8%8E-API-%E5%8F%8D%E4%BB%A3%E5%85%A8%E8%AE%B0%E5%BD%95/" title="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录">
+                        <span class="hidden-mobile">零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
