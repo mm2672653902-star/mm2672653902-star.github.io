@@ -19,26 +19,25 @@
   <meta name="author" content="Mao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像网站与 API 反代全记录  前言身处 AI 爆发的时代，大语言模型（LLM）已经成为了工程师、学生和职场人的生产力标配。然而，网络门槛、官方 API 的连接限制以及昂贵的跨国账单，常常让国内的开发者和普通用户望而却步。 为了解决这个问题，我决定利用手头闲置的域名 maoxijia.top，打造一套专属于自己的">
+    <meta name="description" content="在几何光学和工程光学的学习中，孔径阑（Aperture Stop）、**入瞳（Entrance Pupil）和出瞳（Exit Pupil）**的计算是每一位光电学子的必修课。这部分内容公式虽然简单，但极易因为“符号法则”和“物理因果关系”的混淆而翻车。  今天我们就拿一道经典的学生作业题——**双高斯简化系统（Double Gauss System）**来开刀，不仅给出最简练的现代光学设计（如">
 <meta property="og:type" content="article">
-<meta property="og:title" content="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录">
-<meta property="og:url" content="https://blog.maoxijia.top/2026/05/23/%E9%9B%B6%E6%88%90%E6%9C%AC%E6%8B%A5%E6%8A%B1-AI%EF%BC%9A%E5%9F%BA%E4%BA%8E-Vercel-+-Cloudflare-%E6%9E%81%E9%80%9F%E6%90%AD%E5%BB%BA-GPT-%E9%95%9C%E5%83%8F%E4%B8%8E-API-%E5%8F%8D%E4%BB%A3%E5%85%A8%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及 AI 翻车现场">
+<meta property="og:url" content="https://blog.maoxijia.top/2026/05/27/%E7%BB%8F%E5%85%B8%E5%85%89%E5%AD%A6%E9%A2%98%E4%B8%AD%E7%9A%84%E2%80%9C%E5%9B%A0%E6%9E%9C%E5%A4%A7%E5%9D%91%E2%80%9D%EF%BC%9A%E7%94%A8%E6%96%B0%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%AC%A6%E5%8F%B7%E6%B3%95%E5%88%99%E6%8B%86%E8%A7%A3%E5%8F%8C%E9%AB%98%E6%96%AF%E7%B3%BB%E7%BB%9F%E5%8F%8A-AI-%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/index.html">
 <meta property="og:site_name" content="小毛的blog空间">
-<meta property="og:description" content="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像网站与 API 反代全记录  前言身处 AI 爆发的时代，大语言模型（LLM）已经成为了工程师、学生和职场人的生产力标配。然而，网络门槛、官方 API 的连接限制以及昂贵的跨国账单，常常让国内的开发者和普通用户望而却步。 为了解决这个问题，我决定利用手头闲置的域名 maoxijia.top，打造一套专属于自己的">
+<meta property="og:description" content="在几何光学和工程光学的学习中，孔径阑（Aperture Stop）、**入瞳（Entrance Pupil）和出瞳（Exit Pupil）**的计算是每一位光电学子的必修课。这部分内容公式虽然简单，但极易因为“符号法则”和“物理因果关系”的混淆而翻车。  今天我们就拿一道经典的学生作业题——**双高斯简化系统（Double Gauss System）**来开刀，不仅给出最简练的现代光学设计（如">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-05-23T05:52:38.000Z">
+<meta property="article:published_time" content="2026-05-27T05:11:34.000Z">
 <meta property="article:modified_time" content="2026-05-27T13:14:09.412Z">
 <meta property="article:author" content="Mao">
-<meta property="article:tag" content="AI工具">
-<meta property="article:tag" content="反向代理">
-<meta property="article:tag" content="镜像">
+<meta property="article:tag" content="学习心得">
+<meta property="article:tag" content="学习总结">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录 - 小毛的blog空间</title>
+  <title>经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及 AI 翻车现场 - 小毛的blog空间</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -339,7 +338,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录"></span>
+            <span id="subtitle" data-typed-text="经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及 AI 翻车现场"></span>
           
         </div>
 
@@ -350,8 +349,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-05-23 13:52" pubdate>
-          2026年5月23日 下午
+        <time datetime="2026-05-27 13:11" pubdate>
+          2026年5月27日 下午
         </time>
       </span>
     
@@ -362,7 +361,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k 字
+          3.1k 字
         
       </span>
     
@@ -373,7 +372,7 @@
         
         
         
-          33 分钟
+          26 分钟
         
       </span>
     
@@ -412,133 +411,58 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录</h1>
+            <h1 id="seo-header">经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及 AI 翻车现场</h1>
             
             
               <div class="markdown-body">
                 
                 <blockquote>
-<p>零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像网站与 API 反代全记录</p>
+<p>在几何光学和工程光学的学习中，<strong>孔径阑（Aperture Stop）</strong>、**入瞳（Entrance Pupil）<strong>和</strong>出瞳（Exit Pupil）**的计算是每一位光电学子的必修课。这部分内容公式虽然简单，但极易因为“符号法则”和“物理因果关系”的混淆而翻车。</p>
 </blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>身处 AI 爆发的时代，大语言模型（LLM）已经成为了工程师、学生和职场人的生产力标配。然而，网络门槛、官方 API 的连接限制以及昂贵的跨国账单，常常让国内的开发者和普通用户望而却步。</p>
-<p>为了解决这个问题，我决定利用手头闲置的域名 <code>maoxijia.top</code>，打造一套专属于自己的 AI 基础设施。今天，我利用 Google 开源&#x2F;推荐的高性能反向代理方案（Antigravity 架构思想），配合前端托管神器 <strong>Vercel</strong> 以及网络优化大师 <strong>Cloudflare (CF)</strong>，成功部署了两个平台：</p>
+<p>今天我们就拿一道经典的学生作业题——**双高斯简化系统（Double Gauss System）**来开刀，不仅给出最简练的现代光学设计（如 Zemax）主流解法，更要公开处刑以 DeepSeek 为代表的大模型在处理此类物理共轭问题时犯下的经典低级错误。</p>
+<h2 id="一、-题目内容（中文版）"><a href="#一、-题目内容（中文版）" class="headerlink" title="一、 题目内容（中文版）"></a>一、 题目内容（中文版）</h2><p><strong>(双高斯系统)</strong> 一个双高斯系统被简化为围绕着孔径阑（光圈）的两片理想透镜。自左向右的系统配置如下：一片焦距为 $60\text{ mm}$ 的透镜（记为 $L_1$），距离其 $14\text{ mm}$ 处是一个直径为 $3\text{ mm}$ 的孔径阑（Stop），距离孔径阑 $9\text{ mm}$ 处是一片焦距为 $40\text{ mm}$ 的透镜（记为 $L_2$）。</p>
+<ul>
+<li><strong>a)</strong> 求入瞳的位置和大小。</li>
+<li><strong>b)</strong> 求出瞳的位置和大小。</li>
+<li><strong>c)</strong> 求瞳孔放大率（即出瞳直径与入瞳直径的比值）。</li>
+<li><strong>d)</strong> 在最后一片透镜 $L_2$ 后方 $15\text{ mm}$ 处放置一片新的理想透镜 $L_3$。求这片新透镜的焦距，使得系统实现<strong>像方远心</strong>（即主光线与主光轴平行），并评论插入这片理想透镜带来的影响。</li>
+</ul>
+<h2 id="二、-核心工具：新笛卡尔符号法则"><a href="#二、-核心工具：新笛卡尔符号法则" class="headerlink" title="二、 核心工具：新笛卡尔符号法则"></a>二、 核心工具：新笛卡尔符号法则</h2><p>为了与现代光学工程接轨，本博文全程采用<strong>新笛卡尔符号法则（New Cartesian Sign Convention）</strong>：</p>
 <ol>
-<li><strong>AI 镜像网站：</strong> <code>ai.maoxijia.top</code>（提供给用户直接交互的网页端）</li>
-<li><strong>API 反代网站：</strong> <code>api.maoxijia.top</code>（提供给开发环境、第三方客户端直接调用的安全接口）</li>
+<li>光线从左向右传播为正方向。</li>
+<li>以当前计算的<strong>透镜光心</strong>为坐标原点。原点左侧为负（-），右侧为正（+）。</li>
+<li>薄透镜高斯公式：<br>$$ \frac{1}{s’} - \frac{1}{s} &#x3D; \frac{1}{f} $$<br><em>(其中 $s$ 为物距坐标，$s’$ 为像距坐标，$f$ 为焦距。凸透镜 $f &gt; 0$)</em></li>
 </ol>
-<p>这套方案最大的优势在于：<strong>完全免费、无需购买海外服务器、自带全球 CDN 加速、且能有效防御恶意攻击</strong>。本文将毫无保留地把搭建全过程分享出来，希望能帮到有相同需求的朋友。</p>
-<hr>
-<h2 id="一、-核心架构与工具链介绍"><a href="#一、-核心架构与工具链介绍" class="headerlink" title="一、 核心架构与工具链介绍"></a>一、 核心架构与工具链介绍</h2><p>在正式动手前，我们需要明白这套架构是如何运作的。简单来说，它由以下几个“乐高积木”搭建而成：</p>
+<h2 id="三、-核心思路与简要解析"><a href="#三、-核心思路与简要解析" class="headerlink" title="三、 核心思路与简要解析"></a>三、 核心思路与简要解析</h2><h3 id="a-入瞳（Entrance-Pupil）的计算"><a href="#a-入瞳（Entrance-Pupil）的计算" class="headerlink" title="a) 入瞳（Entrance Pupil）的计算"></a>a) 入瞳（Entrance Pupil）的计算</h3><ul>
+<li><strong>核心思路</strong>：入瞳是光阑在物空间的共轭。光线正向传播时，先经过入瞳，再被透镜 $L_1$ 折射，最后卡进真实光阑。因此，<strong>入瞳是“物”（$s_1$），真实光阑是它经 $L_1$ 成的“像”（$s’_1$）</strong>。</li>
+<li><strong>重要公式</strong>：<br>已知光阑在 $L_1$ 右侧，故像距坐标 $s’_1 &#x3D; +14\text{ mm}$，焦距 $f_1 &#x3D; +60\text{ mm}$。<br>$$ \frac{1}{14} - \frac{1}{s_1} &#x3D; \frac{1}{60} $$<br>解得：$s_1 &#x3D; +18.26\text{ mm}$。<br>垂轴放大率：$\beta_1 &#x3D; \frac{s’_1}{s_1} &#x3D; \frac{14}{18.26} &#x3D; 0.767$。</li>
+<li><strong>结论</strong>：入瞳位于 <strong>$L_1$ 右侧 $18.26\text{ mm}$ 处</strong>（属于虚物位置）。<br>入瞳直径 $D_{\text{en}} &#x3D; \frac{D_{\text{stop}}}{\beta_1} &#x3D; \frac{3}{0.767} &#x3D; 3.91\text{ mm}$。</li>
+</ul>
+<h3 id="b-出瞳（Exit-Pupil）的计算"><a href="#b-出瞳（Exit-Pupil）的计算" class="headerlink" title="b) 出瞳（Exit Pupil）的计算"></a>b) 出瞳（Exit Pupil）的计算</h3><ul>
+<li><strong>核心思路</strong>：出瞳是光阑被其后方透镜 $L_2$ 所成的像。因此，<strong>真实光阑是“物”（$s_2$），出瞳是“像”（$s’_2$）</strong>。</li>
+<li><strong>重要公式</strong>：<br>已知光阑在 $L_2$ 左侧，故物距坐标 $s_2 &#x3D; -9\text{ mm}$，焦距 $f_2 &#x3D; +40\text{ mm}$。<br>$$ \frac{1}{s’_2} - \frac{1}{-9} &#x3D; \frac{1}{40} $$<br>解得：$s’_2 &#x3D; -11.61\text{ mm}$。<br>垂轴放大率：$\beta_2 &#x3D; \frac{s’_2}{s_2} &#x3D; \frac{-11.61}{-9} &#x3D; 1.29$。</li>
+<li><strong>结论</strong>：出瞳位于 <strong>$L_2$ 左侧 $11.61\text{ mm}$ 处</strong>（属于虚像位置）。<br>出瞳直径 $D_{\text{ex}} &#x3D; \beta_2 \times D_{\text{stop}} &#x3D; 1.29 \times 3 &#x3D; 3.87\text{ mm}$。</li>
+</ul>
+<h3 id="c-瞳孔放大率（Pupil-Magnification）"><a href="#c-瞳孔放大率（Pupil-Magnification）" class="headerlink" title="c) 瞳孔放大率（Pupil Magnification）"></a>c) 瞳孔放大率（Pupil Magnification）</h3><ul>
+<li><strong>重要公式</strong>：<br>$$ \text{Pupil Magnification} &#x3D; \frac{D_{\text{ex}}}{D_{\text{en}}} &#x3D; \frac{3.87}{3.91} &#x3D; 0.99 $$</li>
+</ul>
+<h3 id="d-像方远心改造"><a href="#d-像方远心改造" class="headerlink" title="d) 像方远心改造"></a>d) 像方远心改造</h3><ul>
+<li><strong>核心思路</strong>：要实现像方远心，经新透镜 $L_3$ 出射的主光线必须平行于光轴（成像在 $\infty$）。因为所有主光线都看似从<strong>出瞳中心</strong>发出，所以<strong>出瞳中心就是 $L_3$ 的“物”</strong>。</li>
+<li><strong>重要公式</strong>：<br>$L_3$ 放在 $L_2$ 右侧 $15\text{ mm}$ 处。已知出瞳在 $L_2$ 左侧 $11.61\text{ mm}$，则出瞳到 $L_3$ 的左侧物理距离为 $15 + 11.61 &#x3D; 26.61\text{ mm}$。<br>故 $L_3$ 的物距坐标为 $s_3 &#x3D; -26.61\text{ mm}$，要求像距 $s’_3 &#x3D; \infty$。<br>$$ \frac{1}{\infty} - \frac{1}{-26.61} &#x3D; \frac{1}{f_3} $$<br>解得：$f_3 &#x3D; 26.61\text{ mm}$。</li>
+<li><strong>重要影响</strong>：系统变为像方远心，即使像面微调脱焦，图像的放大倍率也保持恒定，极利于精密测量；同时系统总光焦度增加。</li>
+</ul>
+<h2 id="四、-本题致命坑点与-AI-翻车现场剖析"><a href="#四、-本题致命坑点与-AI-翻车现场剖析" class="headerlink" title="四、 本题致命坑点与 AI 翻车现场剖析"></a>四、 本题致命坑点与 AI 翻车现场剖析</h2><p>这道题最精彩的部分，莫过于看大模型（如 DeepSeek、豆包等）在第一问（入瞳）集体翻车。</p>
+<h3 id="1-坑点：表面文字的“降智陷阱”"><a href="#1-坑点：表面文字的“降智陷阱”" class="headerlink" title="1. 坑点：表面文字的“降智陷阱”"></a>1. 坑点：表面文字的“降智陷阱”</h3><p>很多教科书上对入瞳的定义是：<em>“入瞳是孔径光阑被前方透镜所成的像。”</em></p>
+<p>大模型和部分初学者一看到**“光阑所成的像”<strong>这几个字，思维立刻陷入僵化，直觉地认为：</strong>“光阑是物，入瞳是像”<strong>。于是它们在计算 a) 问时，直接把光阑在 $L_1$ 右侧 $14\text{ mm}$ 的条件，当成了</strong>物距 $s &#x3D; +14\text{ mm}$（虚物）**代入公式，试图去求一个正向传播的“像距 $s’$”。</p>
+<h3 id="2-物理层面的因果颠倒"><a href="#2-物理层面的因果颠倒" class="headerlink" title="2. 物理层面的因果颠倒"></a>2. 物理层面的因果颠倒</h3><p>如果按照 AI 的错误逻辑，代入公式会得到：<br>$$ \frac{1}{s’} - \frac{1}{14} &#x3D; \frac{1}{60} $$<br>解得：$s’ &#x3D; 11.35\text{ mm}$。</p>
+<p>它们给出的结论是：入瞳在透镜1右侧 $11.35\text{ mm}$ 处。</p>
+<p><strong>为什么这是完全错误的？</strong></p>
+<p>我们用**近轴光线追迹（Paraxial Ray Tracing）**一验便知真假。入瞳的本质是“物空间主光线的交点”。这意味着，任何一条在物空间穿过“入瞳中心”的光线，经过透镜1折射后，<strong>必须精准地穿过真实光阑的中心</strong>。</p>
 <ul>
-<li><strong>Antigravity 核心方案</strong>：基于高性能反代逻辑，专门处理复杂的请求重写、Header 伪装以及多账号轮询，确保国内请求能稳定顺畅地送达 OpenAI 等海外服务器。</li>
-<li><strong>Vercel</strong>：全球顶级的 Serverless（无服务器）托管平台。我们不需要购买 VPS，直接将代码托管在 GitHub，Vercel 会自动监听并完成自动化部署（CI&#x2F;CD），并提供强大的 Edge Functions（边缘函数）来运行反代逻辑。</li>
-<li><strong>Cloudflare</strong>：全球网络安全与加速巨头。在这里它充当两个角色：一是 <strong>DNS 域名解析与防护</strong>，隐藏 Vercel 的真实分配 IP，防止网站被 DDoS 攻击；二是 <strong>网络优化</strong>，通过其全球边缘节点，大幅缩短国内访问的反响时间。</li>
+<li>如果按照 <strong>AI 算出的假位置（$+11.35\text{ mm}$）<strong>追踪一条光线，经过透镜1折射后，它在真实光阑面上的高度</strong>不为0</strong>。这意味着光线根本进不去光圈，会被金属叶片无情挡住！</li>
+<li>如果按照 <strong>博文给出的真位置（$+18.26\text{ mm}$）<strong>追踪光线，无论入射斜率如何，折射后在 $14\text{ mm}$ 光阑面上的高度</strong>永远精准为 0</strong>！</li>
 </ul>
-<p>架构链路图大致如下：<br><code>用户请求 -&gt; Cloudflare (安全防护/CDN) -&gt; Vercel Edge (运行 Antigravity 逻辑) -&gt; OpenAI API 终点</code></p>
-<hr>
-<h2 id="二、-准备工作"><a href="#二、-准备工作" class="headerlink" title="二、 准备工作"></a>二、 准备工作</h2><p>开始之前，请确保你已经准备好以下工具和账号：</p>
-<ol>
-<li><strong>GitHub 账号</strong>：用于克隆和托管反代及镜像网站的源码。</li>
-<li><strong>Vercel 账号</strong>：直接使用 GitHub 账号登录即可。</li>
-<li><strong>Cloudflare 账号</strong>：用于接管你的域名 DNS。</li>
-<li><strong>一个顶级域名</strong>：本教程以我自己的 <code>maoxijia.top</code> 为例。</li>
-<li><strong>OpenAI API Key</strong>：既然是搭建反代，你手里需要有一个官方的 API Key（用于测试或填入镜像后台）。</li>
-</ol>
-<hr>
-<h2 id="三、-实战演练：api-maoxijia-top（API-反代网站）部署"><a href="#三、-实战演练：api-maoxijia-top（API-反代网站）部署" class="headerlink" title="三、 实战演练：api.maoxijia.top（API 反代网站）部署"></a>三、 实战演练：api.maoxijia.top（API 反代网站）部署</h2><p>我们先来搭建底层骨架——API 反代。它的作用是把官方的 <code>api.openai.com</code> 映射到我们自己的 <code>api.maoxijia.top</code>，让国内的 Python 脚本或各类软件（如 ChatBox、NextChat）能无缝调用。</p>
-<h3 id="步骤-1：获取及配置-Antigravity-代码"><a href="#步骤-1：获取及配置-Antigravity-代码" class="headerlink" title="步骤 1：获取及配置 Antigravity 代码"></a>步骤 1：获取及配置 Antigravity 代码</h3><ol>
-<li>登录你的 GitHub 账号。</li>
-<li>寻找或创建基于 Vercel Edge Functions 的 Antigravity 反代仓库。</li>
-<li>在项目的 <code>index.js</code> 或 <code>api/v1.js</code> 核心路由中，确保其实现了以下逻辑：<ul>
-<li>拦截所有发往 <code>api.maoxijia.top</code> 的请求。</li>
-<li>修改请求头（Headers），剥离可能导致阻断的特征，将 <code>Host</code> 修改为 <code>api.openai.com</code>。</li>
-<li>保持流式传输（Stream&#x2F;SSE），这是 ChatGPT 逐字蹦出效果的关键。</li>
-</ul>
-</li>
-</ol>
-<h3 id="步骤-2：导入-Vercel-并配置环境变量"><a href="#步骤-2：导入-Vercel-并配置环境变量" class="headerlink" title="步骤 2：导入 Vercel 并配置环境变量"></a>步骤 2：导入 Vercel 并配置环境变量</h3><ol>
-<li>打开 <a target="_blank" rel="noopener" href="https://vercel.com/">Vercel 官网</a>，点击 <strong>Add New -&gt; Project</strong>。</li>
-<li>导入你刚刚准备好的 GitHub 反代项目仓库。</li>
-<li>在 <strong>Environment Variables（环境变量）</strong> 中，可以根据项目要求配置关键变量：<ul>
-<li>例如，如果你想做访问权限控制，可以设置 <code>AUTH_SECRET_KEY</code>。</li>
-<li>如果想内置官方 Key，可设置 <code>OPENAI_API_KEY</code>（建议留空，让客户端自行输入）。</li>
-</ul>
-</li>
-<li>点击 <strong>Deploy</strong>。等待大约 30 秒，Vercel 就会为你分配一个以 <code>.vercel.app</code> 结尾的免费默认域名。</li>
-</ol>
-<hr>
-<h2 id="四、-实战演练：ai-maoxijia-top（AI-镜像网站）部署"><a href="#四、-实战演练：ai-maoxijia-top（AI-镜像网站）部署" class="headerlink" title="四、 实战演练：ai.maoxijia.top（AI 镜像网站）部署"></a>四、 实战演练：ai.maoxijia.top（AI 镜像网站）部署</h2><p>有了稳定的 API 接口，接下来我们部署前端交互界面。这里我们通常采用市面上成熟的开源项目（如 ChatGPT-Next-Web 或 Lobe-Chat），它们拥有极佳的 UI 体验。</p>
-<h3 id="步骤-1：克隆前端项目"><a href="#步骤-1：克隆前端项目" class="headerlink" title="步骤 1：克隆前端项目"></a>步骤 1：克隆前端项目</h3><p>在 GitHub 上 Fork 优秀的网页端项目到你自己的仓库。</p>
-<h3 id="步骤-2：在-Vercel-中进行二次部署"><a href="#步骤-2：在-Vercel-中进行二次部署" class="headerlink" title="步骤 2：在 Vercel 中进行二次部署"></a>步骤 2：在 Vercel 中进行二次部署</h3><ol>
-<li>同样在 Vercel 中新建项目，选择刚才 Fork 的前端网页仓库。</li>
-<li><strong>至关重要的一步</strong>：在配置环境变量时，找到 <code>BASE_URL</code> 或 <code>OPENAI_PROXY_URL</code>。</li>
-<li><strong>将该变量的值填写为我们刚刚搭建好的反代地址</strong>：<code>https://api.maoxijia.top</code>。<blockquote>
-<p><strong>注意</strong>：绝对不要填官方地址，必须填你自己的反代 API，这样前端网页才能在国内网络下正常向后端发送请求。</p>
-</blockquote>
-</li>
-<li>点击 <strong>Deploy</strong>，完成前端镜像网站的上线。</li>
-</ol>
-<hr>
-<h2 id="五、-关键一环：Cloudflare-域名解析与-Vercel-自定义域名绑定"><a href="#五、-关键一环：Cloudflare-域名解析与-Vercel-自定义域名绑定" class="headerlink" title="五、 关键一环：Cloudflare 域名解析与 Vercel 自定义域名绑定"></a>五、 关键一环：Cloudflare 域名解析与 Vercel 自定义域名绑定</h2><p>目前，Vercel 默认分配的 <code>.vercel.app</code> 域名在国内部分地区遭遇了 DNS 污染，无法直接访问。因此，我们必须绑定自己的顶级域名 <code>maoxijia.top</code>，并通过 Cloudflare 进行中转加速。</p>
-<h3 id="1-将域名解析权移交给-Cloudflare"><a href="#1-将域名解析权移交给-Cloudflare" class="headerlink" title="1. 将域名解析权移交给 Cloudflare"></a>1. 将域名解析权移交给 Cloudflare</h3><ol>
-<li>登录你的域名注册商后台（如阿里云、腾讯云或 Namecheap）。</li>
-<li>将修改 DNS 服务器（Name Servers）为 Cloudflare 提供的地址（例如：<code>alex.ns.cloudflare.com</code> 和 <code>mira.ns.cloudflare.com</code>）。</li>
-<li>等待 DNS 生效。</li>
-</ol>
-<h3 id="2-在-Vercel-中绑定自定义域名"><a href="#2-在-Vercel-中绑定自定义域名" class="headerlink" title="2. 在 Vercel 中绑定自定义域名"></a>2. 在 Vercel 中绑定自定义域名</h3><ol>
-<li>进入 Vercel 中 API 反代的项目后台，点击 <strong>Settings -&gt; Domains</strong>。</li>
-<li>输入 <code>api.maoxijia.top</code>，点击 Add。此时 Vercel 会提示你一条 <code>CNAME</code> 记录或 <code>A</code> 记录的信息。</li>
-<li>同样的方式，进入前端镜像网站的项目后台，在 Domains 中添加 <code>ai.maoxijia.top</code>。</li>
-</ol>
-<h3 id="3-在-Cloudflare-中配置-DNS-记录"><a href="#3-在-Cloudflare-中配置-DNS-记录" class="headerlink" title="3. 在 Cloudflare 中配置 DNS 记录"></a>3. 在 Cloudflare 中配置 DNS 记录</h3><p>回到 Cloudflare 控制台，进入 <code>maoxijia.top</code> 的管理页面，添加以下两条关键解析：</p>
-<table>
-<thead>
-<tr>
-<th align="left">类型 (Type)</th>
-<th align="left">名称 (Name)</th>
-<th align="left">目标地址 (Content)</th>
-<th align="left">代理状态 (Proxy status)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>CNAME</strong></td>
-<td align="left"><code>api</code></td>
-<td align="left"><code>cname.vercel-dns.com</code></td>
-<td align="left"><strong>已开启 (Proxied 黄色小云朵)</strong></td>
-</tr>
-<tr>
-<td align="left"><strong>CNAME</strong></td>
-<td align="left"><code>ai</code></td>
-<td align="left"><code>cname.vercel-dns.com</code></td>
-<td align="left"><strong>已开启 (Proxied 黄色小云朵)</strong></td>
-</tr>
-</tbody></table>
-<blockquote>
-<p><strong>独家避坑指南：</strong><br>很多人在这里会遇到“重定向次数过多（Too many redirects）”的错误。这是因为 Cloudflare 与 Vercel 之间的 SSL 握手协议冲突导致。<br><strong>解决方案：</strong> 在 Cloudflare 的左侧菜单中点击 <strong>SSL&#x2F;TLS</strong>，将加密模式从默认的“灵活 (Flexible)”修改为 <strong>“完全 (Full)”</strong> 或 <strong>“严格 (Strict)”</strong>。</p>
-</blockquote>
-<hr>
-<h2 id="六、-性能优化与安全性加固"><a href="#六、-性能优化与安全性加固" class="headerlink" title="六、 性能优化与安全性加固"></a>六、 性能优化与安全性加固</h2><p>到这一步，你的网站应该已经可以顺利打开了。但作为一个合格的站点所有者，我们还需要利用 Cloudflare 的强大功能对网站进行调优。</p>
-<h3 id="1-开启-Web-缓存与边缘加速"><a href="#1-开启-Web-缓存与边缘加速" class="headerlink" title="1. 开启 Web 缓存与边缘加速"></a>1. 开启 Web 缓存与边缘加速</h3><p>由于 AI 镜像站的许多前端资源（JavaScript、CSS、字体文件）是固定不变的，我们可以在 Cloudflare 的 <strong>Caching (缓存)</strong> 选项中，将浏览器缓存过期时间设置为 1天以上。这样，当国内用户访问 <code>ai.maoxijia.top</code> 时，静态资源会直接从就近的 Cloudflare 国内周边边缘节点（如香港、东京、新加坡）加载，实现毫秒级开屏。</p>
-<h3 id="2-配置-WAF-防护墙，防止-API-被盗刷"><a href="#2-配置-WAF-防护墙，防止-API-被盗刷" class="headerlink" title="2. 配置 WAF 防护墙，防止 API 被盗刷"></a>2. 配置 WAF 防护墙，防止 API 被盗刷</h3><p>API 额度就是真金白银。为了防止恶意爬虫或者别人直接抓取你的 <code>api.maoxijia.top</code> 进行滥用，建议在 Cloudflare 的 <strong>Security -&gt; WAF (Web 应用程序防火墙)</strong> 中建立一条规则：</p>
-<ul>
-<li><strong>速率限制 (Rate Limiting)</strong>：限制单个 IP 每分钟的请求次数（例如：每分钟最多 60 次请求）。超过该频率则封禁该 IP 一小时。</li>
-<li><strong>挑战机制</strong>：对非正常浏览器特征的请求，强制弹出 Cloudflare Turnstile 验证码，拦截自动化刷量脚本。</li>
-</ul>
-<hr>
-<h2 id="七、-总结与展望"><a href="#七、-总结与展望" class="headerlink" title="七、 总结与展望"></a>七、 总结与展望</h2><p>通过今天的一番折腾，我们用极其优雅的姿势完成了 <code>ai.maoxijia.top</code> 和 <code>api.maoxijia.top</code> 的协同部署。回看整个方案：</p>
-<ul>
-<li><strong>零成本</strong>：服务器托管在 Vercel，网络安全交给 Cloudflare，我们除了域名续费，没有掏一分钱。</li>
-<li><strong>高可用</strong>：得益于 Antigravity 的优秀底层和 Vercel Edge Functions 的分布式特性，即便单点出现波动，也能自动漂移恢复。</li>
-<li><strong>双向赋能</strong>：镜像站方便了身边没有技术背景的朋友直接使用 AI；反代站则解放了我们自己的开发环境，随时随地一行代码调用大模型。</li>
-</ul>
-<p>未来，我计划在这套架构的基础上，进一步引入 <strong>Cloudflare Workers KV</strong> 来做全自动的 API Key 轮询与额度监控，甚至加入用户登录注册系统，将其打造成一个小型微型的 SaaS 平台。</p>
-<p>如果你在跟随本文搭建的过程中遇到了任何阻碍，比如 Vercel 报错、Cloudflare 证书不匹配等问题，欢迎在评论区留言交流，我们一起避坑！</p>
-<hr>
-<h3 id="🎯-站点速递"><a href="#🎯-站点速递" class="headerlink" title="🎯 站点速递"></a>🎯 站点速递</h3><ul>
-<li><strong>Web 交互端：</strong> <a target="_blank" rel="noopener" href="https://ai.maoxijia.top/">https://ai.maoxijia.top</a></li>
-<li><strong>API 接入点：</strong> <code>https://api.maoxijia.top</code></li>
-</ul>
-<p><em>版权声明：本文为博主原创文章，转载请注明出处。</em></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>大模型之所以在这里“降智”，是因为它无法真正理解光子在空间中行进的<strong>因果方向</strong>。光线在正向传播时，是先“瞄准”入瞳，再穿过透镜1，最后才通过光阑。<strong>入瞳是因（物），光阑是果（像）</strong>。逆推时必须把光阑当成已知的像距，而不是盲目地把它当成物距。</p>
 
                 
               </div>
@@ -557,7 +481,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/" class="category-chain-item">技术总结</a>
+  <a href="/categories/%E5%BA%94%E7%94%A8%E5%85%89%E5%AD%A6/" class="category-chain-item">应用光学</a>
   
   
 
@@ -572,11 +496,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AI%E5%B7%A5%E5%85%B7/" class="print-no-link">#AI工具</a>
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="print-no-link">#学习总结</a>
       
-        <a href="/tags/%E9%95%9C%E5%83%8F/" class="print-no-link">#镜像</a>
-      
-        <a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" class="print-no-link">#反向代理</a>
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" class="print-no-link">#学习心得</a>
       
     </div>
   
@@ -588,8 +510,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>零成本拥抱 AI：基于 Vercel + Cloudflare 极速搭建 GPT 镜像与 API 反代全记录</div>
-      <div>https://blog.maoxijia.top/2026/05/23/零成本拥抱-AI：基于-Vercel-+-Cloudflare-极速搭建-GPT-镜像与-API-反代全记录/</div>
+      <div>经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及 AI 翻车现场</div>
+      <div>https://blog.maoxijia.top/2026/05/27/经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及-AI-翻车现场/</div>
     </div>
     <div class="license-meta">
       
@@ -601,7 +523,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年5月23日</div>
+          <div>2026年5月27日</div>
         </div>
       
       
@@ -633,18 +555,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/05/25/%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E7%9A%84%E9%80%9A%E4%BF%97%E7%90%86%E8%A7%A3/" title="傅里叶变换的通俗理解">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">傅里叶变换的通俗理解</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/05/22/%E5%9F%BA%E4%BA%8E-AI-Agent-%E9%97%AD%E7%8E%AF%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%85%A8%E8%87%AA%E5%8A%A8%E9%BB%91%E7%A7%91%E6%8A%80%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99%E5%AE%9E%E6%88%98%E4%B8%8E%E5%85%89%E7%94%B5%E7%BE%8E%E5%AD%A6%E6%80%9D%E8%80%83/" title="基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考">
-                        <span class="hidden-mobile">基于 AI Agent 闭环驱动的全自动黑科技博客建站实战与光电美学思考</span>
+                      <a href="/2026/05/27/20260527-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E4%BB%8E%E5%BE%AE%E8%A7%82%E7%94%B5%E8%8D%B7%E6%BC%82%E7%A7%BB%E5%88%B0%E5%AE%8F%E8%A7%82%E7%94%B5%E8%B7%AF%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E7%9A%84%E7%94%B5%E5%AD%90%E5%AD%A6%E5%9F%BA%E7%9F%B3/" title="20260527 学习笔记：从微观电荷漂移到宏观电路网络分析的电子学基石">
+                        <span class="hidden-mobile">20260527 学习笔记：从微观电荷漂移到宏观电路网络分析的电子学基石</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

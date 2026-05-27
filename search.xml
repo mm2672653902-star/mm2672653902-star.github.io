@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及 AI 翻车现场</title>
+      <link href="/2026/05/27/%E7%BB%8F%E5%85%B8%E5%85%89%E5%AD%A6%E9%A2%98%E4%B8%AD%E7%9A%84%E2%80%9C%E5%9B%A0%E6%9E%9C%E5%A4%A7%E5%9D%91%E2%80%9D%EF%BC%9A%E7%94%A8%E6%96%B0%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%AC%A6%E5%8F%B7%E6%B3%95%E5%88%99%E6%8B%86%E8%A7%A3%E5%8F%8C%E9%AB%98%E6%96%AF%E7%B3%BB%E7%BB%9F%E5%8F%8A-AI-%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/"/>
+      <url>/2026/05/27/%E7%BB%8F%E5%85%B8%E5%85%89%E5%AD%A6%E9%A2%98%E4%B8%AD%E7%9A%84%E2%80%9C%E5%9B%A0%E6%9E%9C%E5%A4%A7%E5%9D%91%E2%80%9D%EF%BC%9A%E7%94%A8%E6%96%B0%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%AC%A6%E5%8F%B7%E6%B3%95%E5%88%99%E6%8B%86%E8%A7%A3%E5%8F%8C%E9%AB%98%E6%96%AF%E7%B3%BB%E7%BB%9F%E5%8F%8A-AI-%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>在几何光学和工程光学的学习中，<strong>孔径阑（Aperture Stop）</strong>、**入瞳（Entrance Pupil）<strong>和</strong>出瞳（Exit Pupil）**的计算是每一位光电学子的必修课。这部分内容公式虽然简单，但极易因为“符号法则”和“物理因果关系”的混淆而翻车。</p></blockquote><p>今天我们就拿一道经典的学生作业题——**双高斯简化系统（Double Gauss System）**来开刀，不仅给出最简练的现代光学设计（如 Zemax）主流解法，更要公开处刑以 DeepSeek 为代表的大模型在处理此类物理共轭问题时犯下的经典低级错误。</p><h2 id="一、-题目内容（中文版）"><a href="#一、-题目内容（中文版）" class="headerlink" title="一、 题目内容（中文版）"></a>一、 题目内容（中文版）</h2><p><strong>(双高斯系统)</strong> 一个双高斯系统被简化为围绕着孔径阑（光圈）的两片理想透镜。自左向右的系统配置如下：一片焦距为 $60\text{ mm}$ 的透镜（记为 $L_1$），距离其 $14\text{ mm}$ 处是一个直径为 $3\text{ mm}$ 的孔径阑（Stop），距离孔径阑 $9\text{ mm}$ 处是一片焦距为 $40\text{ mm}$ 的透镜（记为 $L_2$）。</p><ul><li><strong>a)</strong> 求入瞳的位置和大小。</li><li><strong>b)</strong> 求出瞳的位置和大小。</li><li><strong>c)</strong> 求瞳孔放大率（即出瞳直径与入瞳直径的比值）。</li><li><strong>d)</strong> 在最后一片透镜 $L_2$ 后方 $15\text{ mm}$ 处放置一片新的理想透镜 $L_3$。求这片新透镜的焦距，使得系统实现<strong>像方远心</strong>（即主光线与主光轴平行），并评论插入这片理想透镜带来的影响。</li></ul><h2 id="二、-核心工具：新笛卡尔符号法则"><a href="#二、-核心工具：新笛卡尔符号法则" class="headerlink" title="二、 核心工具：新笛卡尔符号法则"></a>二、 核心工具：新笛卡尔符号法则</h2><p>为了与现代光学工程接轨，本博文全程采用<strong>新笛卡尔符号法则（New Cartesian Sign Convention）</strong>：</p><ol><li>光线从左向右传播为正方向。</li><li>以当前计算的<strong>透镜光心</strong>为坐标原点。原点左侧为负（-），右侧为正（+）。</li><li>薄透镜高斯公式：<br>$$ \frac{1}{s’} - \frac{1}{s} &#x3D; \frac{1}{f} $$<br><em>(其中 $s$ 为物距坐标，$s’$ 为像距坐标，$f$ 为焦距。凸透镜 $f &gt; 0$)</em></li></ol><h2 id="三、-核心思路与简要解析"><a href="#三、-核心思路与简要解析" class="headerlink" title="三、 核心思路与简要解析"></a>三、 核心思路与简要解析</h2><h3 id="a-入瞳（Entrance-Pupil）的计算"><a href="#a-入瞳（Entrance-Pupil）的计算" class="headerlink" title="a) 入瞳（Entrance Pupil）的计算"></a>a) 入瞳（Entrance Pupil）的计算</h3><ul><li><strong>核心思路</strong>：入瞳是光阑在物空间的共轭。光线正向传播时，先经过入瞳，再被透镜 $L_1$ 折射，最后卡进真实光阑。因此，<strong>入瞳是“物”（$s_1$），真实光阑是它经 $L_1$ 成的“像”（$s’_1$）</strong>。</li><li><strong>重要公式</strong>：<br>已知光阑在 $L_1$ 右侧，故像距坐标 $s’_1 &#x3D; +14\text{ mm}$，焦距 $f_1 &#x3D; +60\text{ mm}$。<br>$$ \frac{1}{14} - \frac{1}{s_1} &#x3D; \frac{1}{60} $$<br>解得：$s_1 &#x3D; +18.26\text{ mm}$。<br>垂轴放大率：$\beta_1 &#x3D; \frac{s’_1}{s_1} &#x3D; \frac{14}{18.26} &#x3D; 0.767$。</li><li><strong>结论</strong>：入瞳位于 <strong>$L_1$ 右侧 $18.26\text{ mm}$ 处</strong>（属于虚物位置）。<br>入瞳直径 $D_{\text{en}} &#x3D; \frac{D_{\text{stop}}}{\beta_1} &#x3D; \frac{3}{0.767} &#x3D; 3.91\text{ mm}$。</li></ul><h3 id="b-出瞳（Exit-Pupil）的计算"><a href="#b-出瞳（Exit-Pupil）的计算" class="headerlink" title="b) 出瞳（Exit Pupil）的计算"></a>b) 出瞳（Exit Pupil）的计算</h3><ul><li><strong>核心思路</strong>：出瞳是光阑被其后方透镜 $L_2$ 所成的像。因此，<strong>真实光阑是“物”（$s_2$），出瞳是“像”（$s’_2$）</strong>。</li><li><strong>重要公式</strong>：<br>已知光阑在 $L_2$ 左侧，故物距坐标 $s_2 &#x3D; -9\text{ mm}$，焦距 $f_2 &#x3D; +40\text{ mm}$。<br>$$ \frac{1}{s’_2} - \frac{1}{-9} &#x3D; \frac{1}{40} $$<br>解得：$s’_2 &#x3D; -11.61\text{ mm}$。<br>垂轴放大率：$\beta_2 &#x3D; \frac{s’_2}{s_2} &#x3D; \frac{-11.61}{-9} &#x3D; 1.29$。</li><li><strong>结论</strong>：出瞳位于 <strong>$L_2$ 左侧 $11.61\text{ mm}$ 处</strong>（属于虚像位置）。<br>出瞳直径 $D_{\text{ex}} &#x3D; \beta_2 \times D_{\text{stop}} &#x3D; 1.29 \times 3 &#x3D; 3.87\text{ mm}$。</li></ul><h3 id="c-瞳孔放大率（Pupil-Magnification）"><a href="#c-瞳孔放大率（Pupil-Magnification）" class="headerlink" title="c) 瞳孔放大率（Pupil Magnification）"></a>c) 瞳孔放大率（Pupil Magnification）</h3><ul><li><strong>重要公式</strong>：<br>$$ \text{Pupil Magnification} &#x3D; \frac{D_{\text{ex}}}{D_{\text{en}}} &#x3D; \frac{3.87}{3.91} &#x3D; 0.99 $$</li></ul><h3 id="d-像方远心改造"><a href="#d-像方远心改造" class="headerlink" title="d) 像方远心改造"></a>d) 像方远心改造</h3><ul><li><strong>核心思路</strong>：要实现像方远心，经新透镜 $L_3$ 出射的主光线必须平行于光轴（成像在 $\infty$）。因为所有主光线都看似从<strong>出瞳中心</strong>发出，所以<strong>出瞳中心就是 $L_3$ 的“物”</strong>。</li><li><strong>重要公式</strong>：<br>$L_3$ 放在 $L_2$ 右侧 $15\text{ mm}$ 处。已知出瞳在 $L_2$ 左侧 $11.61\text{ mm}$，则出瞳到 $L_3$ 的左侧物理距离为 $15 + 11.61 &#x3D; 26.61\text{ mm}$。<br>故 $L_3$ 的物距坐标为 $s_3 &#x3D; -26.61\text{ mm}$，要求像距 $s’_3 &#x3D; \infty$。<br>$$ \frac{1}{\infty} - \frac{1}{-26.61} &#x3D; \frac{1}{f_3} $$<br>解得：$f_3 &#x3D; 26.61\text{ mm}$。</li><li><strong>重要影响</strong>：系统变为像方远心，即使像面微调脱焦，图像的放大倍率也保持恒定，极利于精密测量；同时系统总光焦度增加。</li></ul><h2 id="四、-本题致命坑点与-AI-翻车现场剖析"><a href="#四、-本题致命坑点与-AI-翻车现场剖析" class="headerlink" title="四、 本题致命坑点与 AI 翻车现场剖析"></a>四、 本题致命坑点与 AI 翻车现场剖析</h2><p>这道题最精彩的部分，莫过于看大模型（如 DeepSeek、豆包等）在第一问（入瞳）集体翻车。</p><h3 id="1-坑点：表面文字的“降智陷阱”"><a href="#1-坑点：表面文字的“降智陷阱”" class="headerlink" title="1. 坑点：表面文字的“降智陷阱”"></a>1. 坑点：表面文字的“降智陷阱”</h3><p>很多教科书上对入瞳的定义是：<em>“入瞳是孔径光阑被前方透镜所成的像。”</em></p><p>大模型和部分初学者一看到**“光阑所成的像”<strong>这几个字，思维立刻陷入僵化，直觉地认为：</strong>“光阑是物，入瞳是像”<strong>。于是它们在计算 a) 问时，直接把光阑在 $L_1$ 右侧 $14\text{ mm}$ 的条件，当成了</strong>物距 $s &#x3D; +14\text{ mm}$（虚物）**代入公式，试图去求一个正向传播的“像距 $s’$”。</p><h3 id="2-物理层面的因果颠倒"><a href="#2-物理层面的因果颠倒" class="headerlink" title="2. 物理层面的因果颠倒"></a>2. 物理层面的因果颠倒</h3><p>如果按照 AI 的错误逻辑，代入公式会得到：<br>$$ \frac{1}{s’} - \frac{1}{14} &#x3D; \frac{1}{60} $$<br>解得：$s’ &#x3D; 11.35\text{ mm}$。</p><p>它们给出的结论是：入瞳在透镜1右侧 $11.35\text{ mm}$ 处。</p><p><strong>为什么这是完全错误的？</strong></p><p>我们用**近轴光线追迹（Paraxial Ray Tracing）**一验便知真假。入瞳的本质是“物空间主光线的交点”。这意味着，任何一条在物空间穿过“入瞳中心”的光线，经过透镜1折射后，<strong>必须精准地穿过真实光阑的中心</strong>。</p><ul><li>如果按照 <strong>AI 算出的假位置（$+11.35\text{ mm}$）<strong>追踪一条光线，经过透镜1折射后，它在真实光阑面上的高度</strong>不为0</strong>。这意味着光线根本进不去光圈，会被金属叶片无情挡住！</li><li>如果按照 <strong>博文给出的真位置（$+18.26\text{ mm}$）<strong>追踪光线，无论入射斜率如何，折射后在 $14\text{ mm}$ 光阑面上的高度</strong>永远精准为 0</strong>！</li></ul><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>大模型之所以在这里“降智”，是因为它无法真正理解光子在空间中行进的<strong>因果方向</strong>。光线在正向传播时，是先“瞄准”入瞳，再穿过透镜1，最后才通过光阑。<strong>入瞳是因（物），光阑是果（像）</strong>。逆推时必须把光阑当成已知的像距，而不是盲目地把它当成物距。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 应用光学 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 学习总结 </tag>
+            
+            <tag> 学习心得 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>20260527 学习笔记：从微观电荷漂移到宏观电路网络分析的电子学基石</title>
       <link href="/2026/05/27/20260527-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E4%BB%8E%E5%BE%AE%E8%A7%82%E7%94%B5%E8%8D%B7%E6%BC%82%E7%A7%BB%E5%88%B0%E5%AE%8F%E8%A7%82%E7%94%B5%E8%B7%AF%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E7%9A%84%E7%94%B5%E5%AD%90%E5%AD%A6%E5%9F%BA%E7%9F%B3/"/>
       <url>/2026/05/27/20260527-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E4%BB%8E%E5%BE%AE%E8%A7%82%E7%94%B5%E8%8D%B7%E6%BC%82%E7%A7%BB%E5%88%B0%E5%AE%8F%E8%A7%82%E7%94%B5%E8%B7%AF%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E7%9A%84%E7%94%B5%E5%AD%90%E5%AD%A6%E5%9F%BA%E7%9F%B3/</url>
@@ -20,9 +47,9 @@
       
         <tags>
             
-            <tag> 学习心得 </tag>
-            
             <tag> 学习总结 </tag>
+            
+            <tag> 学习心得 </tag>
             
         </tags>
       
@@ -47,9 +74,9 @@
       
         <tags>
             
-            <tag> 学习心得 </tag>
-            
             <tag> 学习总结 </tag>
+            
+            <tag> 学习心得 </tag>
             
         </tags>
       
