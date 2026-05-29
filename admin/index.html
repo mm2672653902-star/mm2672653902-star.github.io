@@ -1029,13 +1029,48 @@
                     }
 
                     const timeStr = new Date(deployRun.created_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-                    textElement.innerHTML = `Actions: <b style="color:var(--text-primary)">${statusZh}</b> (${timeStr})`;
+                    
+                    let actionBtnHtml = "";
+                    if (status === "completed") {
+                        if (conclusion === "failure") {
+                            actionBtnHtml = `<button class="action-icon-btn" onclick="triggerDeployWorkflow('${deployRun.id}')" title="重试部署" style="margin-left: 8px; color: var(--neon-red); font-weight: bold; border: 1px solid var(--neon-red); padding: 2px 6px; border-radius: 3px; font-size: 11px;">🔁 重试部署</button>`;
+                        } else {
+                            actionBtnHtml = `<button class="action-icon-btn" onclick="triggerDeployWorkflow('${deployRun.id}')" title="手动重新构建部署" style="margin-left: 8px; border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 3px; font-size: 11px;">🚀 重新部署</button>`;
+                        }
+                    }
+                    
+                    textElement.innerHTML = `Actions: <b style="color:var(--text-primary)">${statusZh}</b> (${timeStr})${actionBtnHtml}`;
                 } else {
-                    textElement.innerText = "无部署记录";
+                    textElement.innerHTML = `无部署记录 <button class="action-icon-btn" onclick="triggerDeployWorkflow()" title="手动构建部署" style="margin-left: 8px; border: 1px solid var(--border-color); padding: 2px 6px; border-radius: 3px; font-size: 11px;">🚀 手动部署</button>`;
                 }
             } catch (err) {
                 console.error(err);
                 textElement.innerText = "状态同步失败";
+            }
+        }
+
+        // Manually trigger Hexo deploy workflow via rerun API
+        async function triggerDeployWorkflow(runId) {
+            if (!runId) {
+                showToast("未找到最近的部署运行记录，无法重新部署", "error");
+                return;
+            }
+            if (!confirm("确定要重新运行最近一次的 GitHub Actions 部署流水线吗？")) return;
+            
+            showToast("正在发送部署重试请求...", "info");
+            
+            try {
+                await githubAPIRequest(`/actions/runs/${runId}/rerun`, {
+                    method: 'POST'
+                });
+                
+                showToast("重新部署请求发送成功！Actions 正在启动...", "success");
+                
+                // Refresh status after 3 seconds
+                setTimeout(fetchPipelineStatus, 3000);
+            } catch (err) {
+                console.error("触发部署失败:", err);
+                showToast(`触发部署失败: ${err.message}`, "error");
             }
         }
 
