@@ -1,0 +1,1065 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、半导体物理篇：从电子海到理想二极管方程要想看透现代集成电路，我们必须先将视线拉向微观的量子世界。金属和半导体的电学性质，可以通过固体中电子的简单模型来得到清晰的解释。 1. 能带与能隙是如何产生的？ 孤立原子的量子态：单个孤立原子由原子核、紧密结合的内层电子以及最外层轨道的价电子组成。根据量子力学原理，每个电子都必须处于唯一的量子态。固体独特的物理性质，正是由价电子将原子键合在一起的方式来定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从微观量子到硬核电路：一文读懂半导体物理、交流阻抗与晶体管的底层逻辑">
+<meta property="og:url" content="https://blog.maoxijia.top/2026/05/28/%E4%BB%8E%E5%BE%AE%E8%A7%82%E9%87%8F%E5%AD%90%E5%88%B0%E7%A1%AC%E6%A0%B8%E7%94%B5%E8%B7%AF%EF%BC%9A%E4%B8%80%E6%96%87%E8%AF%BB%E6%87%82%E5%8D%8A%E5%AF%BC%E4%BD%93%E7%89%A9%E7%90%86%E3%80%81%E4%BA%A4%E6%B5%81%E9%98%BB%E6%8A%97%E4%B8%8E%E6%99%B6%E4%BD%93%E7%AE%A1%E7%9A%84%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91/index.html">
+<meta property="og:site_name" content="小毛的blog空间">
+<meta property="og:description" content="一、半导体物理篇：从电子海到理想二极管方程要想看透现代集成电路，我们必须先将视线拉向微观的量子世界。金属和半导体的电学性质，可以通过固体中电子的简单模型来得到清晰的解释。 1. 能带与能隙是如何产生的？ 孤立原子的量子态：单个孤立原子由原子核、紧密结合的内层电子以及最外层轨道的价电子组成。根据量子力学原理，每个电子都必须处于唯一的量子态。固体独特的物理性质，正是由价电子将原子键合在一起的方式来定义">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-28T18:27:59.000Z">
+<meta property="article:modified_time" content="2026-05-29T02:36:12.815Z">
+<meta property="article:author" content="Mao">
+<meta property="article:tag" content="学习心得">
+<meta property="article:tag" content="学习总结">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>从微观量子到硬核电路：一文读懂半导体物理、交流阻抗与晶体管的底层逻辑 - 小毛的blog空间</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.maoxijia.top","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小毛的blog空间</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/" target="_self">
+                <i class="iconfont icon-briefcase"></i>
+                <span>后台</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/admin/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-briefcase"></i>
+                  <span>后台</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从微观量子到硬核电路：一文读懂半导体物理、交流阻抗与晶体管的底层逻辑"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-29 02:27" pubdate>
+          2026年5月29日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从微观量子到硬核电路：一文读懂半导体物理、交流阻抗与晶体管的底层逻辑</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="一、半导体物理篇：从电子海到理想二极管方程"><a href="#一、半导体物理篇：从电子海到理想二极管方程" class="headerlink" title="一、半导体物理篇：从电子海到理想二极管方程"></a>一、半导体物理篇：从电子海到理想二极管方程</h2><p>要想看透现代集成电路，我们必须先将视线拉向微观的量子世界。金属和半导体的电学性质，可以通过固体中电子的简单模型来得到清晰的解释。</p>
+<h3 id="1-能带与能隙是如何产生的？"><a href="#1-能带与能隙是如何产生的？" class="headerlink" title="1. 能带与能隙是如何产生的？"></a>1. 能带与能隙是如何产生的？</h3><ul>
+<li><strong>孤立原子的量子态</strong>：单个孤立原子由原子核、紧密结合的内层电子以及最外层轨道的价电子组成。根据量子力学原理，每个电子都必须处于唯一的量子态。固体独特的物理性质，正是由价电子将原子键合在一起的方式来定义的。</li>
+<li><strong>金属的电子海模型</strong>：在金属固体中，价电子不再属于某个特定原子，而是演变成自由移动的“定域化解除（Delocalized）的自由电子”，即所谓的“电子海”。在金属内部，充满电子的能级与未充满的空能级紧密相连。</li>
+<li><strong>共价键与能带分裂（Band Splitting）</strong>：半导体材料主要通过电子的共价键和重叠壳层结合在一起。如果原子相互分离，其行为类似于孤立原子。随着原子移近，最外层价电子壳层开始发生重叠。为了调和这种重叠并确保每个电子量子态的唯一性，原本单一的孤立能级被迫分裂成无数个密集的能级，这就是能量带在固体中通过“能带分裂”的过程而出现的机理。</li>
+<li><strong>能隙的诞生</strong>：在现实中，固体结构最终会稳定在一个由离子实和价电子之间的库仑吸引力与排斥力决定的平衡间距上。在此间距下，分裂出的能带之间会留出一个明显的真空能量空隙，这就是能隙（Energy gap, $E_g$），也叫禁带区域。能隙正是来源于半导体材料中离子实的特定排列位置。</li>
+</ul>
+<h3 id="2-金属、半导体与绝缘体的硬核分类"><a href="#2-金属、半导体与绝缘体的硬核分类" class="headerlink" title="2. 金属、半导体与绝缘体的硬核分类"></a>2. 金属、半导体与绝缘体的硬核分类</h3><p>根据能隙 $E_g$ 的大小，固体材料的导电行为被清晰地划分为三类：</p>
+<ul>
+<li><strong>金属</strong>：若没有外部能量施加到金属上，所有电子会完全占据价带能量状态。由于导带和价带之间不存在能隙屏障，任何微小的外部能量（如热、电、磁或光能）都能轻易把电子推入未充满的导带能级中自由移动。</li>
+<li><strong>半导体</strong>：能隙范围通常在 $0 &lt; E_g \le 3.6\text{ eV}$ 之间。只有当外部激发的能量大于能隙 $E_g$ 时，电子才能跨越禁带完成跃迁。讲义中列举了三种典型材料的带隙值：<ul>
+<li>锗 ($\text{Ge}$): $0.66\text{ eV}$</li>
+<li>硅 ($\text{Si}$): $1.1\text{ eV}$</li>
+<li>硫化锌 ($\text{ZnS}$): $3.6\text{ eV}$</li>
+</ul>
+</li>
+<li><strong>绝缘体</strong>：能隙极大，明确定义为 $E_g &gt; 3.6\text{ eV}$。</li>
+</ul>
+<h3 id="3-掺杂（Doping）：制造外征半导体的艺术"><a href="#3-掺杂（Doping）：制造外征半导体的艺术" class="headerlink" title="3. 掺杂（Doping）：制造外征半导体的艺术"></a>3. 掺杂（Doping）：制造外征半导体的艺术</h3><p>纯净的半导体被称为本征半导体。讽刺的是，纯净的本征半导体由于可自由移动的电荷极少，在电子学中并没有太多实际用途。当价电子获得足够能量跨越能隙转换到导带时，会在价带留下一个空状态，称为“空穴”。空穴的行为表现类似于一个带正电的载流子，并且和电子一样可以自由移动。</p>
+<p>为了大幅提升其电学性能，我们在制造时故意引入微量杂质，这就是外征半导体：</p>
+<ul>
+<li><strong>n型半导体（Negative）</strong>：硅（Si）和锗（Ge）等半导体原子的外层轨道有 4 个电子。通过用一个具有 5 个外层价电子的原子（如磷 P）去替代晶格中的硅原子（即掺杂），就会在硅晶体中创造出多余的 1 个电子。磷是极好的掺杂候选者，因为其原子大小与硅非常相似。磷被称为施主杂质（Donor impurity）。施主杂质在能隙里创造了一个靠近导带的新杂质能级，电子只需跨越大约 $50\text{ meV}$ 的微小能隙即可被轻易激发。这使得大量电子能够占据导带，形成以电子为负电荷载流子的 n型半导体。</li>
+<li><strong>p型半导体（Positive）</strong>：通过用一个只有 3 个价电子的原子（如硼 B）去替代硅原子，会在晶体中造成 1 个电子的缺失。这使得晶体极易从价带接受一个电子，从而将接受的电子禁锢在受主位置，并在价带中留下自由移动的空穴。因此，在这种材料中空穴成为了主要的电荷载流子。硼被称为受主杂质（Acceptor impurity）。这就是外征 p型半导体。</li>
+</ul>
+<blockquote>
+<p><strong>温度效应对载流子的影响</strong>：<br>物质在有限温度下具备热运动能量，平均热能由 $E &#x3D; k_B T$ 决定（$T$ 为开氏温度，$k_B$ 为玻尔兹曼常数）。根据麦克斯韦-玻尔兹曼速率分布，即使平均热能相对于能隙很小，也总有一小部分高能量电子能够直接跨越整个能隙完成本征跃迁。</p>
+<ul>
+<li>在有限温度（$T &gt; 0\text{ K}$）下，<strong>n型半导体</strong>导带中的大量电子称为<strong>多数载流子</strong>，而由微弱本征过渡产生的极少空穴则是不可忽视的<strong>少数载流子</strong>，它们在晶体管中扮演决定性角色。</li>
+<li>对应地，在 <strong>p型半导体</strong> 中，被受主杂质捕获后在价带留下的海量空穴是<strong>多数载流子</strong>，而导带中极少量的热激发电子则是<strong>少数载流子</strong>。</li>
+</ul>
+</blockquote>
+<h3 id="4-pn结的动态平衡与理想二极管方程推导"><a href="#4-pn结的动态平衡与理想二极管方程推导" class="headerlink" title="4. pn结的动态平衡与理想二极管方程推导"></a>4. pn结的动态平衡与理想二极管方程推导</h3><p>半导体结形成于 p型 和 n型 半导体相接触的交界面。pn结非常重要，因为它是构建使用双极结型晶体管（BJT）电路的基本基石。</p>
+<ul>
+<li><strong>第一步：扩散（Diffusion）</strong>：由于结两侧存在巨大的载流子浓度梯度，根据德鲁德气体分子模型，n区的电子和p区的空穴会自发向对方区域扩散并发生复合。电子试图填满没有电子的区域，空穴也试图填满没有空穴的区域。</li>
+<li><strong>第二步：空间电荷区（耗尽层）</strong>：复合导致界面附近的自由电荷完全耗尽。n区边界留下了带正电的施主固定离子，p区边界留下了带负电的受主固定离子。这些不能移动的空间电荷在结两侧建立了一个电位差，即形成了<strong>自建电场 $E$</strong>。</li>
+<li><strong>第三步：漂移（Drift）与热平衡</strong>：自建电场会对正电荷施加 $F &#x3D; q_0 E$ 的电场力（规定 $q_0$ 为正），驱动载流子进行反向的漂移运动，迫使电荷漂移回来。当扩散运动与漂移运动在特定浓度梯度和自建电场下达到动态平衡时，便实现了热平衡状态。在能带图上，两侧材料的<strong>费米能级（$E_f$）完全水平对齐</strong>，从而导致了能隙在界面处的弯曲，形成了阻挡势垒。对于典型的二极管，这个平衡电位垒高度产生的能量阻挡满足 $q_0 V_0 &#x3D; 0.7\text{ eV}$。</li>
+</ul>
+<h4 id="理想二极管方程的严密数学推导："><a href="#理想二极管方程的严密数学推导：" class="headerlink" title="理想二极管方程的严密数学推导："></a>理想二极管方程的严密数学推导：</h4><p>外加偏置电压 $V$ 时（阳极电压变化，阴极固定在 0V），若 $V &gt; 0$ 为正向偏置，若 $V &lt; 0$ 为反向偏置。流过 pn结（二极管）的总电流 $I$ 为正向过垒电流 $I_1$ 与反向漂移电流 $I_2$ 的差值：</p>
+<p>$$I &#x3D; I_1 - I_2$$</p>
+<ul>
+<li><p><strong>反向偏置 ($V &lt; 0$)</strong>：外加电场加宽了自建电场阻挡，多数载流子的扩散流动被彻底切断扫回。此时仅有少数载流子流过，前向电流 $I_1$ 保持与 $V&#x3D;0$ 情况下几乎相同的值，即满足 $I_1 \approx I_2$。这个极小的、近乎恒定的反向主回路电流被称为“漏电流（Leakage current）”。如果在极高反向偏置电压下，少数载流子被电场加速会引发雪崩击穿现象。</p>
+</li>
+<li><p><strong>正向偏置 ($V &gt; 0$)</strong>：外加电压削弱了内部自建势垒，使阻挡势垒高度降低为 $V_0 - V$。根据统计物理的玻尔兹曼方程，越过势垒的正向电流 $I_1$ 会随着电压 $V$ 的增加而呈指数级暴增：</p>
+<p>$$I_1 &#x3D; C_N e^{-\frac{e(V_0 - V)}{kT}} &#x3D; C_N e^{-\frac{eV_0}{kT}} \cdot e^{\frac{eV}{kT}}$$</p>
+</li>
+</ul>
+<p>此时反向少数载流子漂移电流 $I_2$ 的大小不会随外加电压改变，它恒等于未加电压时的前向电流分量：</p>
+<p>$$I_2 &#x3D; C_N e^{-\frac{eV_0}{kT}}$$</p>
+<p>将二者代入总电流公式中并提取公因式：</p>
+<p>$$I &#x3D; I_1 - I_2 &#x3D; C_N e^{-\frac{eV_0}{kT}} \left( e^{\frac{eV}{kT}} - 1 \right)$$</p>
+<p>我们令常数项为反向饱和电流 $I_0 &#x3D; C_N e^{-\frac{eV_0}{kT}}$（该常数由结的具体尺寸和半导体材料类型共同决定）。最终完美推导出二极管的<strong>电流-电压特性方程</strong>：</p>
+<p>$$I &#x3D; I_0 \left( e^{\frac{eV}{kT}} - 1 \right)$$</p>
+<hr>
+<h2 id="二、交流电路篇：复数阻抗与滤波器定量推导"><a href="#二、交流电路篇：复数阻抗与滤波器定量推导" class="headerlink" title="二、交流电路篇：复数阻抗与滤波器定量推导"></a>二、交流电路篇：复数阻抗与滤波器定量推导</h2><p>在实践应用中，纯粹的直流（DC）电路用途非常有限，物理学和工程中感兴趣的信号绝大多数都是随时间变化的<strong>交流信号（AC）</strong>。为了对时变信号进行有效放大并改善系统的信噪比（SNR），我们需要深刻理解被动元件（电阻、电容、电感）以及主动偏置元件的交流特性。</p>
+<h3 id="1-为什么要引入复数与虚数单位-j-？"><a href="#1-为什么要引入复数与虚数单位-j-？" class="headerlink" title="1. 为什么要引入复数与虚数单位 $j$？"></a>1. 为什么要引入复数与虚数单位 $j$？</h3><p>现实中的电子电路往往将直流和交流相结合，例如晶体管放大器需要直流偏置来建立一个有用的静态操作点，而交流信号则穿过该电路来完成放大。由于电压和电流在交流波形中并不总是同相的，它们之间存在一个相位差 $\phi$。</p>
+<p>为了定量描述这种包含相位差的时变波形（如 $I &#x3D; I_0 \sin(\omega t)$ 与 $V &#x3D; V_0 \sin(\omega t + \phi)$），最优雅的方法就是引入复数相量表示法：</p>
+<p>$$V &#x3D; a + jb$$</p>
+<p>其中，包含实部 $a$ 和虚部 $b$。<strong>在电子学中专门使用符号 $j$ 来代表虚数单位（即 $j &#x3D; \sqrt{-1}$），这是为了避免与代表电流的符号 $i$ 产生混淆</strong>。我们在示波器上实际观测到的物理波形，本质上就是复数相量在时间轴上旋转时，投影到实轴上的<strong>实部可观测值</strong>。</p>
+<h3 id="2-交流阻抗（Impedance）的定义"><a href="#2-交流阻抗（Impedance）的定义" class="headerlink" title="2. 交流阻抗（Impedance）的定义"></a>2. 交流阻抗（Impedance）的定义</h3><p>在交流电路中，传统的欧姆定律依然有用，但其核心的电阻 $R$ 被扩展为带有虚部的复数<strong>阻抗（$Z$）</strong>（即满足 $V &#x3D; Z I$）：</p>
+<ul>
+<li><p><strong>纯电容阻抗（$Z_C$）</strong>：电容完全不允许直流电通过，但交流电可以顺利流过，因为电容的极板会随着电流的交变频率不断进行充放电。其复数阻抗满足：</p>
+<p>$$Z_C &#x3D; \frac{-j}{\omega C} \quad (\text{其中角频率 } \omega &#x3D; 2\pi f)$$</p>
+<p>公式前面的<strong>负号（$-j$）<strong>清晰地表明在复平面相量图上向下旋转了 $90^\circ$，其物理意义代表</strong>电容两端的电压滞后于流过它的电流 $90^\circ$</strong>。</p>
+</li>
+<li><p><strong>纯电感阻抗（$Z_L$）</strong>：</p>
+<p>$$Z_L &#x3D; j\omega L$$</p>
+<p>公式前面的<strong>正号（$+j$）<strong>表明向上旋转了 $90^\circ$，其物理意义代表</strong>电感两端的电压超前于流过它的电流 $90^\circ$</strong>。</p>
+</li>
+</ul>
+<h3 id="3-高通滤波器（High-Pass-Filter）的严密幅频与相频推导"><a href="#3-高通滤波器（High-Pass-Filter）的严密幅频与相频推导" class="headerlink" title="3. 高通滤波器（High Pass Filter）的严密幅频与相频推导"></a>3. 高通滤波器（High Pass Filter）的严密幅频与相频推导</h3><p>基于经典的无源电阻电压分压器公式：$\frac{V_{\text{OUT}}}{V_{\text{IN}}} &#x3D; \frac{R_2}{R_1 + R_2}$。如果将分压器下方的电阻换成电容，低频时阻抗大而高频时阻抗趋近于0，输出电压随频率增加快速衰减，便构成了低通滤波器。若将电阻和电容的位置相互对调，就演变成了高通滤波器电路。</p>
+<p>根据复数阻抗分压原理，高通滤波器的系统传递函数为：</p>
+<p>$$\frac{V_{\text{OUT}}}{V_{\text{IN}}} &#x3D; \frac{R}{Z_C + R} &#x3D; \frac{R}{R - \frac{j}{\omega C}}$$</p>
+<p>为了求得该系统响应的<strong>幅值比（Magnitude）</strong>，我们可以把分母看作一个直角坐标系中的相量三角形，其实轴长度为 $R$，虚轴长度为 $\frac{1}{\omega C}$。根据勾股定理，分母的复数模长（直角三角形的斜边）为 $\sqrt{R^2 + (1&#x2F;\omega^2C^2)}$。对传递函数取模可得：</p>
+<p>$$\left| \frac{V_{\text{OUT}}}{V_{\text{IN}}} \right| &#x3D; \frac{R}{\sqrt{R^2 + \left(\frac{1}{\omega C}\right)^2}}$$</p>
+<p><strong>幅值比化简推导过程</strong>：将分子和分母同时乘以 $\frac{1}{R}$：</p>
+<p>$$\left| \frac{V_{\text{OUT}}}{V_{\text{IN}}} \right| &#x3D; \frac{R \cdot \frac{1}{R}}{\sqrt{\left[R^2 + \left(\frac{1}{\omega C}\right)^2\right] \cdot \frac{1}{R^2}}} &#x3D; \frac{1}{\sqrt{\frac{R^2}{R^2} + \frac{1}{\omega^2 R^2 C^2}}}$$</p>
+<p>由此完美推导出高通滤波器的幅值响应标准式：</p>
+<p>$$\left| \frac{V_{\text{OUT}}}{V_{\text{IN}}} \right| &#x3D; \frac{1}{\sqrt{1 + \left(\frac{1}{\omega RC}\right)^2}}$$</p>
+<p>对应的**相位角移相响应（$\phi$）**为：</p>
+<p>$$\phi &#x3D; \tan^{-1} \left( \frac{1}{\omega RC} \right)$$</p>
+<ul>
+<li><strong>物理特性</strong>：当频率极低（直流 $\omega &#x3D; 0$）时，幅值比为 0，信号被完全隔离；当高频 $\omega \gg 0$ 时，幅值比趋近于 1，信号可以无损通过。在半功率点（即截止频率 $f_{-3\text{ dB}}$，满足分母中 $\omega RC &#x3D; 1$）处，幅值比衰减为原信号的 $0.707$（即减小 $-3\text{ dB}$），此时输出波形相位超前 <strong>$+45^\circ$</strong>，过渡带的上升截止斜率表现为标准的一阶 <strong>$+20\text{ dB&#x2F;decade}$</strong>。</li>
+</ul>
+<hr>
+<h2 id="三、晶体管篇：硬核-BJT-的微观控制与电路应用"><a href="#三、晶体管篇：硬核-BJT-的微观控制与电路应用" class="headerlink" title="三、晶体管篇：硬核 BJT 的微观控制与电路应用"></a>三、晶体管篇：硬核 BJT 的微观控制与电路应用</h2><p>视频 6 将电路引入到了电子学的核心主动元器件——双极结型晶体管（BJT）中。</p>
+<h3 id="1-NPN型晶体管的微观解剖"><a href="#1-NPN型晶体管的微观解剖" class="headerlink" title="1. NPN型晶体管的微观解剖"></a>1. NPN型晶体管的微观解剖</h3><p>一个标准的 NPN 三极管由两块 n型 掺杂的半导体材料中间夹着一块 p型 材料的三层夹心饼干结构组成。虽然看起来结构对称，但中间被称为**基区（Base）**的夹层在结构和工艺上被赋予了两大决定性特点：</p>
+<ul>
+<li><strong>几何厚度极薄</strong>：基区的物理夹层厚度非常小，<strong>比外侧材料的厚度要小大约两个数量级</strong>（即只有外侧厚度的百分之一左右）。基区就像一个微观电闸，控制着在整个外围大回路中流过的电流。</li>
+<li><strong>极其轻掺杂（高电阻率）</strong>：与两侧高浓度的 n型 半导体相比，基区夹层是轻掺杂的（典型浓度仅为外侧的 <strong>$10%$ 左右</strong>），这导致基区表现出相当高的电阻率。</li>
+<li><strong>物理结果</strong>：极其纤薄的几何厚度加上高电阻率的共同结果，导致流进基极引脚的控制电流 $I_B$ 变得极其微小。通常情况下，<strong>基极电流 $I_B$ 仅仅占外围主回路电流的 1% 左右</strong>。</li>
+</ul>
+<h3 id="2-晶体管放大的微观机理（晶体管效应）"><a href="#2-晶体管放大的微观机理（晶体管效应）" class="headerlink" title="2. 晶体管放大的微观机理（晶体管效应）"></a>2. 晶体管放大的微观机理（晶体管效应）</h3><p>从结构上看，晶体管类似于两个背靠背连接的二极管。基极和发射极之间的部分（B-E结）处于正向偏置状态（多数载流子可自由流动），而基极和集电极之间的部分（B-C结）处于反向偏置状态（理论上阻断多数载流子，仅允许极少数载流子自由流动）。</p>
+<ol>
+<li><strong>打破扩散平衡</strong>：当向基极输入一个微小的控制电流 $I_B$ 时，这个微小电流足以彻底破坏B-E结内部原本的扩散与漂移动态平衡，改变了控制载流子跨越基射结向回漂移的内部电压。</li>
+<li><strong>全面导通与喷射</strong>：只要外加一个 <strong>$0.6 - 0.7\text{ V}$</strong> 的电压偏置，就可以使这个正向偏置的“二极管”进入完全导通状态。由于发射极掺杂浓度极高，大批电子以高密度扩散冲开发射极终端，越过结界面涌入基区。</li>
+<li><strong>角色转变与高压抽吸</strong>：大量电子注入到纤薄的 p型 基区后，在基区内部瞬间变成了“少数载流子”。由于基区极为纤薄且内部极度缺乏空穴与之复合，这批电子还没来得及在基区安家，就已经扩散到了反偏的 B-C 结边界。反偏的集电结存在强大的内部反向抽取电场，对于作为少数载流子的电子来说是一架顺向的极速滑梯，电子被强行驱动跨越集电极-基极结，横扫进入集电极。</li>
+<li><strong>等效模型</strong>：晶体管的集电极这一侧在宏观上展现出了<strong>具有极高阻抗的电流源特性</strong>。极微小的基极电荷流动变相控制并在集电极与发射极之间产生了大得多的主电流，这就是奇妙的<strong>晶体管效应</strong>。</li>
+</ol>
+<h3 id="3-实际电路计算实例"><a href="#3-实际电路计算实例" class="headerlink" title="3. 实际电路计算实例"></a>3. 实际电路计算实例</h3><h4 id="实例一：作为数字开关电路（Switch）"><a href="#实例一：作为数字开关电路（Switch）" class="headerlink" title="实例一：作为数字开关电路（Switch）"></a>实例一：作为数字开关电路（Switch）</h4><p>讲义中给出了一个利用 $10\text{ V}$ 直流电源驱动一个规格为 $10\text{ V}, 0.1\text{A}$ 灯泡的经典晶体管开关电路：</p>
+<ul>
+<li><strong>截止状态（OFF）</strong>：当输入端的控制基极电流为零（$I_b &#x3D; 0$）时，基极-发射极结不处于正向偏置导通状态。此时没有任何电流可以从 $10\text{ V}$ 电源流入集电极回路（即主回路电流 $I_c &#x3D; 0$），输出端表现为完全断开的 $0.0\text{ V}$，灯泡不亮。</li>
+<li><strong>饱和导通状态（ON）</strong>：当基极输入非零电流（$I_b &gt; 0$）且基射结正向导通时，基极电压被箝位在稳定的导通压降 <strong>$0.6\text{ V}$</strong>。</li>
+</ul>
+<p>根据基极支路的克希荷夫电压降平衡，流过限流电阻 $R$ 的基极控制电流极易通过以下公式精确计算：</p>
+<p>$$I_b &#x3D; \frac{10.0 - 0.6}{R}$$</p>
+<p>此基极电流促使三极管饱和导通，主回路中流过 $I &#x3D; 100\text{ mA} &#x3D; 0.1\text{ A}$ 的额定大电流，开关完全闭合，灯泡高亮点亮。</p>
+<h4 id="实例二：线性信号放大与实验参数计算"><a href="#实例二：线性信号放大与实验参数计算" class="headerlink" title="实例二：线性信号放大与实验参数计算"></a>实例二：线性信号放大与实验参数计算</h4><p>对于需要放大微弱模拟信号的应用场合，讲义引入了世界名著《The Art of Electronics》（Horowitz &amp; Hill, 1980）中著名的**“晶体管小人（Transistor Man）”**卡通模型来直观解释其线性放大区行为。晶体管小人时刻盯着一个连接在基极（B）上的微电流表。一旦发现基极电流 $I_B$ 发生了微小改变，他就会以最快的速度去旋转调整集电极支路的可变电阻，从而产生一个同比例成倍放大的集电极主回路电流。其核心线性放大关系式为：</p>
+<p>$$I_C &#x3D; h_{FE} I_B$$</p>
+<p><em>(其中直流电流放大系数 $h_{FE}$ 也被称为晶体管固定参数，其在理论上满足关系式 $\beta &#x3D; \frac{\alpha}{1 - \alpha}$，$\alpha$ 为集电极电流占整个发射极电流的百分比比例)</em>。</p>
+<p>讲义在最后一页展示了利用 LabVIEW 平台和三线伏安特性分析仪对真实三极管（型号：BC547）的电流放大系数 $h_{FE}$ 进行实际测量的过程。其方法是在不同的阶梯式基极控制电流值下，连续测量并绘制集电极电流 $I_C$ 随集电极电压 $V_C$ 变化的输出特性曲线族。</p>
+<ul>
+<li><p><strong>已知已知实验数据</strong>：根据图形界面中的特定工作点读取，输入的微小基极控制电流为：</p>
+<p>$$I_B &#x3D; 40\ \mu\text{A} &#x3D; 40 \times 10^{-6}\text{ A}$$</p>
+</li>
+<li><p><strong>可观测实验输出结果</strong>：此时对应的集电极主电流恒定输出平台大小为：</p>
+<p>$$I_C &#x3D; 12\text{ mA} &#x3D; 12 \times 10^{-3}\text{ A}$$</p>
+</li>
+<li><p><strong>严密求解推导过程</strong>：根据放大公式进行变形，求出当前工作点下的电流放大参数 $h_{FE}$：</p>
+<p>$$h_{FE} &#x3D; \frac{I_C}{I_B} &#x3D; \frac{12 \times 10^{-3}\text{ A}}{40 \times 10^{-6}\text{ A}} &#x3D; \frac{12}{40} \times 10^3 &#x3D; 0.3 \times 1000 &#x3D; 300$$</p>
+</li>
+<li><p><strong>最终例题计算答案</strong>：该 BC547 实际测得的电流放大系数为：</p>
+<p>$$h_{FE} \approx 300$$</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%B5%E5%AD%90%E5%AD%A6/" class="category-chain-item">电子学</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" class="print-no-link">#学习心得</a>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="print-no-link">#学习总结</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从微观量子到硬核电路：一文读懂半导体物理、交流阻抗与晶体管的底层逻辑</div>
+      <div>https://blog.maoxijia.top/2026/05/28/从微观量子到硬核电路：一文读懂半导体物理、交流阻抗与晶体管的底层逻辑/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/27/%E7%BB%8F%E5%85%B8%E5%85%89%E5%AD%A6%E9%A2%98%E4%B8%AD%E7%9A%84%E2%80%9C%E5%9B%A0%E6%9E%9C%E5%A4%A7%E5%9D%91%E2%80%9D%EF%BC%9A%E7%94%A8%E6%96%B0%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%AC%A6%E5%8F%B7%E6%B3%95%E5%88%99%E6%8B%86%E8%A7%A3%E5%8F%8C%E9%AB%98%E6%96%AF%E7%B3%BB%E7%BB%9F%E5%8F%8A-AI-%E7%BF%BB%E8%BD%A6%E7%8E%B0%E5%9C%BA/" title="经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及 AI 翻车现场">
+                        <span class="hidden-mobile">经典光学题中的“因果大坑”：用新笛卡尔符号法则拆解双高斯系统及 AI 翻车现场</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"mm2672653902-star/mm2672653902-star.github.io","repo-id":"R_kgDOSk_xrw","category":"Announcements","category-id":"DIC_kwDOSk_xr84C9qIx","theme-light":"light","theme-dark":"noborder_dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'noborder_dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js', function() {
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js', function() {
+            var renderMath = function() {
+              renderMathInElement(document.body, {
+                delimiters: [
+                  {left: '$$', right: '$$', display: true},
+                  {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+              });
+            };
+            renderMath();
+            Fluid.events.registerRefreshCallback(renderMath);
+          });
+        });
+      </script>
+    
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
